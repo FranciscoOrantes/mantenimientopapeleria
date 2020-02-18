@@ -1,0 +1,7 @@
+.button {
+    -fx-text-fill: black;
+    -fx-background-color: linear-gradient(#ffffff, #ffffff);
+	-fx-border-color:#1ac897;
+	-fx-border-width: 1;
+	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.2) , 1,0,0, 2);
+}
