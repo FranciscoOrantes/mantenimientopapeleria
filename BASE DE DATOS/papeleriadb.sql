@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-01-2020 a las 18:18:11
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.1.27
+-- Tiempo de generación: 18-02-2020 a las 02:05:08
+-- Versión del servidor: 10.1.36-MariaDB
+-- Versión de PHP: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -78,7 +78,8 @@ CREATE TABLE `usuario` (
   `password` varchar(100) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `apellidoPaterno` varchar(50) NOT NULL,
-  `apellidoMaterno` varchar(50) NOT NULL
+  `apellidoMaterno` varchar(50) NOT NULL,
+  `tipoUsuario` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
