@@ -71,7 +71,7 @@ public class InicioSesion {
                 dialogoAlerta.setContentText("Ha iniciado sesión con éxito");
                 dialogoAlerta.initStyle(StageStyle.UTILITY);
                 dialogoAlerta.showAndWait();
-                loaderInicioAdmin = new FXMLLoader(getClass().getResource("/Vista/RegistroProducto.fxml"));
+                loaderInicioAdmin = new FXMLLoader(getClass().getResource("/Vista/ListaProductos.fxml"));
                     Parent root1 = (Parent) loaderInicioAdmin.load();
                     ventanaInicio = new Stage();
                     ventanaInicio.setScene(new Scene(root1));

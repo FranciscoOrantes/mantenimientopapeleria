@@ -6,14 +6,19 @@
 package Controlador;
 
 import Modelo.InicioSesion;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -30,6 +35,8 @@ public class LoginController implements Initializable {
     @FXML
     Button btnRegistrar;
     private String usuario,password;
+     static Stage ventanaInicio;
+    static FXMLLoader loaderInicioAdmin;
     
     /**
      * Initializes the controller class.
@@ -45,6 +52,14 @@ InicioSesion inicio = new InicioSesion();
 inicio.setUsuario(usuario);
 inicio.setPassword(password);
 inicio.buscarUsuario();
-}    
+}
+public void registrarse() throws IOException{
+     loaderInicioAdmin = new FXMLLoader(getClass().getResource("/Vista/RegistroUsuarios.fxml"));
+                    Parent root1 = (Parent) loaderInicioAdmin.load();
+                    ventanaInicio = new Stage();
+                    ventanaInicio.setScene(new Scene(root1));
+                    ventanaInicio.setResizable(false);
+                    ventanaInicio.show();
+}
     
 }

@@ -6,7 +6,7 @@
 package Controlador;
 
 import Modelo.Conexion;
-import Modelo.ProductosModelo;
+import Modelo.Producto;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -49,8 +49,10 @@ public class ProductoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       
         llenarDatosProvedor();
         llenarDatosTiposProductos();
+        
     }  
     
     public void registrarProducto(){
@@ -65,7 +67,7 @@ public class ProductoController implements Initializable {
          String[] dato1 = var1.split(" ");
          tipoProductoCampo = Integer.valueOf(dato[0]);
          tipoProvedorCampo = Integer.valueOf(dato1[0]);
-         ProductosModelo a= new ProductosModelo();
+         Producto a= new Producto();
          a.registrarProducto(nombreCampo,descripcionCampo,precioCampo,folioCampo,tipoProductoCampo,tipoProvedorCampo);
           
     }
