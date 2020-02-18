@@ -26,7 +26,8 @@ import javax.swing.JOptionPane;
 public class InicioSesion {
      private String usuario;
     private String password;
-   
+    static Stage ventanaInicio;
+    static FXMLLoader loaderInicioAdmin;
     
 
     public void setUsuario(String usuario) {
@@ -70,6 +71,12 @@ public class InicioSesion {
                 dialogoAlerta.setContentText("Ha iniciado sesión con éxito");
                 dialogoAlerta.initStyle(StageStyle.UTILITY);
                 dialogoAlerta.showAndWait();
+                loaderInicioAdmin = new FXMLLoader(getClass().getResource("/Vista/RegistroProducto.fxml"));
+                    Parent root1 = (Parent) loaderInicioAdmin.load();
+                    ventanaInicio = new Stage();
+                    ventanaInicio.setScene(new Scene(root1));
+                    ventanaInicio.setResizable(false);
+                    ventanaInicio.show();
             } else {
 
                 Alert dialogoAlerta = new Alert(Alert.AlertType.WARNING);
@@ -78,12 +85,7 @@ public class InicioSesion {
                 dialogoAlerta.setContentText("Usuario o Contraseña incorrecta");
                 dialogoAlerta.initStyle(StageStyle.UTILITY);
                 dialogoAlerta.showAndWait();
-                /*loaderInicioAdmin = new FXMLLoader(getClass().getResource("Login.fxml"));
-                Parent root1 = (Parent) loaderInicioAdmin.load();
-                ventanaInicio = new Stage();
-                ventanaInicio.setScene(new Scene(root1));
-                ventanaInicio.setResizable(false);
-                ventanaInicio.show();*/
+              
 
             }
 

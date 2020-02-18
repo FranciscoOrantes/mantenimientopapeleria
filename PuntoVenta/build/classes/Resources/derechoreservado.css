@@ -1,0 +1,7 @@
+.text-field{
+   -fx-font-size: 14;
+   -fx-padding: 8,5,1,1;
+   -fx-background-color:#707070;
+   -fx-opacity: 0.1;
+   -fx-font-family:Segoe UI;
+}

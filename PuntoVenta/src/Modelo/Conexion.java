@@ -32,7 +32,7 @@ public class Conexion {
           
     
 }catch(Exception e){
-    
+    System.err.println(e);
      Alert dialogoAlerta = new Alert(Alert.AlertType.ERROR);
     dialogoAlerta.setTitle("");
     dialogoAlerta.setHeaderText("Error con la BD");
