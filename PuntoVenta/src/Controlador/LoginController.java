@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 /**
@@ -22,7 +24,11 @@ public class LoginController implements Initializable {
     @FXML
     TextField txtUsuario;
     @FXML
-    TextField txtPassword;
+    PasswordField txtPassword;
+    @FXML
+    Button btnIniciar;
+    @FXML
+    Button btnRegistrar;
     private String usuario,password;
     
     /**

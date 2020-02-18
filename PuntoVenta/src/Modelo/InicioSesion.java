@@ -88,7 +88,7 @@ public class InicioSesion {
             }
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            
             Alert dialogoAlerta = new Alert(Alert.AlertType.WARNING);
             dialogoAlerta.setTitle("Error");
             dialogoAlerta.setHeaderText("Ha Ocurrido un error con la BD");
