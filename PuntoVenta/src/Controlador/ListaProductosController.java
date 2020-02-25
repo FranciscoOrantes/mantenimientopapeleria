@@ -136,7 +136,8 @@ public class ListaProductosController implements Initializable {
             
 
         }
-    }
+    } 
+     
       public void inicializarTablaProductos() {
           productos = FXCollections.observableArrayList();
           Producto.llenarInfoProductos(productos);

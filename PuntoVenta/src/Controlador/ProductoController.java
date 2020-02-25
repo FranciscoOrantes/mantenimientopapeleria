@@ -14,13 +14,16 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
@@ -54,8 +57,8 @@ public class ProductoController implements Initializable {
         llenarDatosTiposProductos();
         
     }  
-    
-    public void registrarProducto(){
+    @FXML
+    private void registrarProducto(ActionEvent event){
          nombreCampo=  nombre.getText();
          descripcionCampo = descripcion.getText();
          precioCampo = precio.getText(); 
@@ -69,7 +72,14 @@ public class ProductoController implements Initializable {
          tipoProvedorCampo = Integer.valueOf(dato1[0]);
          Producto a= new Producto();
          a.registrarProducto(nombreCampo,descripcionCampo,precioCampo,folioCampo,tipoProductoCampo,tipoProvedorCampo);
-          
+         nombre.setText("");
+         descripcion.setText("");
+         folio.setText("");
+         precio.setText("");
+          Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+         
     }
     public void llenarDatosProvedor(){
         Conexion con = new Conexion();
@@ -107,6 +117,13 @@ public class ProductoController implements Initializable {
         } catch (Exception e) {
             System.err.println("Error Llenar datos");
         }
+    }
+    @FXML
+    private void cerrar(ActionEvent event){
+        
+     Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
     
 }

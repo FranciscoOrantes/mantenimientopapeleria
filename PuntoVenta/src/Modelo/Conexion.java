@@ -17,8 +17,8 @@ import javafx.stage.StageStyle;
 public class Conexion {
     Connection conectar=null;
     public static final String URL = "jdbc:mysql://localhost:3306/papeleriadb";
-    public static final String USERNAME = "francisco";
-    public static final String PASSWORD = "jesucristo1";
+    public static final String USERNAME = "root";
+    public static final String PASSWORD = "";
     
      public Connection conectate(){ 
     

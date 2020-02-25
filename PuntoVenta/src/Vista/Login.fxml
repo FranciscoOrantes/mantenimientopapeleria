@@ -13,8 +13,8 @@
       <Text layoutX="73.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inicia sesión para comenzar a administrar" wrappingWidth="230.208984375" />
       <TextField fx:id="txtUsuario" layoutX="73.0" layoutY="150.0" prefHeight="25.0" prefWidth="266.0" promptText="usuario" stylesheets="@../Resources/usuario.css" />
       <PasswordField fx:id="txtPassword" layoutX="73.0" layoutY="203.0" prefHeight="25.0" prefWidth="266.0" promptText="password" stylesheets="@../Resources/usuario.css" />
-      <Button fx:id="btnIniciar" layoutX="73.0" layoutY="291.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="33.0" prefWidth="102.0" stylesheets="@../Resources/btn_degradado%20(1).css" text="Iniciar" />
-      <Button fx:id="btnRegistrar" layoutX="237.0" layoutY="291.0" mnemonicParsing="false" onAction="#registrarse" prefHeight="33.0" prefWidth="102.0" stylesheets="@../Resources/btn_white.css" text="Registrarse" />
+      <Button fx:id="btnIniciar" layoutX="73.0" layoutY="291.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="33.0" prefWidth="102.0" stylesheets="@../Resources/btn_Aceppt.css" text="Iniciar" />
+      <Button fx:id="btnRegistrar" layoutX="237.0" layoutY="291.0" mnemonicParsing="false" onAction="#registrarse" prefHeight="33.0" prefWidth="102.0" stylesheets="@../Resources/btn_delete.css" text="Registrarse" />
       <TextField editable="false" layoutX="56.0" layoutY="41.0" prefHeight="50.0" prefWidth="336.0" style="-fx-background-color: white;" text="Bienvenido">
          <font>
             <Font name="Segoe UI Bold" size="25.0" />

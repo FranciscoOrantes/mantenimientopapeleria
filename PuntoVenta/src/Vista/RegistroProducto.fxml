@@ -44,18 +44,18 @@
                   <Font size="18.0" />
                </font>
             </TextField>
-            <Button layoutX="499.0" layoutY="488.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="224.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FF0202; -fx-border-width: 2;" text="Cancelar" textFill="#f20707">
+            <Button layoutX="499.0" layoutY="488.0" mnemonicParsing="false" onAction="#cerrar" prefHeight="39.0" prefWidth="224.0" stylesheets="@../Resources/btn_delete.css" text="Cancelar" textFill="#f20707">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnRegistro" layoutX="172.0" layoutY="488.0" mnemonicParsing="false" onAction="#registrarProducto" prefHeight="39.0" prefWidth="224.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #2a9382; -fx-border-width: 2;" text="Registrar" textFill="#3f87c2">
+            <Button fx:id="btnRegistro" layoutX="172.0" layoutY="488.0" mnemonicParsing="false" onAction="#registrarProducto" prefHeight="39.0" prefWidth="224.0" stylesheets="@../Resources/btn_Aceppt.css" text="Registrar" textFill="#3f87c2">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
             <ComboBox fx:id="tipoProducto" layoutX="177.0" layoutY="386.0" prefHeight="39.0" prefWidth="224.0" promptText="Tipo Producto" />
-            <ComboBox fx:id="tipoProvedor" layoutX="499.0" layoutY="385.0" prefHeight="39.0" prefWidth="224.0" promptText="Provedor" />
+            <ComboBox fx:id="tipoProvedor" layoutX="499.0" layoutY="385.0" prefHeight="39.0" prefWidth="224.0" promptText="Proveedor" />
          </children>
       </AnchorPane>
    </children>
