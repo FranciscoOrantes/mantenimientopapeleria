@@ -34,6 +34,7 @@ public class Producto {
     public SimpleIntegerProperty folio = new SimpleIntegerProperty();
     public SimpleStringProperty tipo = new SimpleStringProperty();
     public SimpleStringProperty proveedor = new SimpleStringProperty();
+    
     static String getDataFilter = "SELECT producto.id, producto.nombre, producto.descripcion,producto.precio, producto.folio, tipoproducto.tipo,"
             + " proveedor.nombre FROM producto\n"
             + "INNER JOIN tipoproducto on tipoproducto.id = producto.tipo_id\n"
@@ -82,7 +83,6 @@ public class Producto {
         this.folio = new SimpleIntegerProperty(folio);
         this.tipo = new SimpleStringProperty(tipo);
         this.proveedor = new SimpleStringProperty(proveedor);
-
     }
 
     public static void llenarInfoProductos(ObservableList<Producto> lista) {

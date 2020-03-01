@@ -7,13 +7,9 @@ package Main;
 
 import java.io.IOException;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -21,10 +17,11 @@ import javafx.stage.Stage;
  * @author Francisco
  */
 public class PuntoVenta extends Application {
+
     static Stage ventanaLogin;
+
     @Override
     public void start(Stage primaryStage) throws IOException {
-        
         this.ventanaLogin = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("/Vista/Login.fxml"));
         Scene scene = new Scene(root);
@@ -39,5 +36,5 @@ public class PuntoVenta extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

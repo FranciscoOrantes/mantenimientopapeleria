@@ -26,11 +26,7 @@ public class Conexion {
 
             Class.forName("com.mysql.jdbc.Driver");
            conectar= (Connection) DriverManager.getConnection(URL, USERNAME, PASSWORD);
-          
 
-            
-          
-    
 }catch(Exception e){
     System.err.println(e);
      Alert dialogoAlerta = new Alert(Alert.AlertType.ERROR);
