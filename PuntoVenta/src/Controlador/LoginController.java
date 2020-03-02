@@ -34,8 +34,7 @@ public class LoginController implements Initializable {
     PasswordField txtPassword;
     @FXML
     Button btnIniciar;
-    @FXML
-    Button btnRegistrar;
+   
     private String usuario,password;
      static Stage ventanaInicio;
     static FXMLLoader loaderInicioAdmin;
@@ -59,13 +58,4 @@ inicio.buscarUsuario();
 
 }
 
-public void registrarse() throws IOException{
-    
-     loaderInicioAdmin = new FXMLLoader(getClass().getResource("/Vista/RegistroUsuarios.fxml"));
-                    Parent root1 = (Parent) loaderInicioAdmin.load();
-                    ventanaInicio = new Stage();
-                    ventanaInicio.setScene(new Scene(root1));
-                    ventanaInicio.setResizable(false);
-                    ventanaInicio.show();   
-}
 }
