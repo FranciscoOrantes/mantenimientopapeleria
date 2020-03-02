@@ -28,6 +28,9 @@ public class Producto {
     }
 
     public SimpleIntegerProperty id = new SimpleIntegerProperty();
+    public SimpleIntegerProperty cantidad = new SimpleIntegerProperty();
+
+
     public SimpleStringProperty nombre = new SimpleStringProperty();
     public SimpleStringProperty descripcion = new SimpleStringProperty();
     public SimpleStringProperty precio = new SimpleStringProperty();
@@ -39,8 +42,15 @@ public class Producto {
             + "INNER JOIN tipoproducto on tipoproducto.id = producto.tipo_id\n"
             + "INNER JOIN proveedor on proveedor.id = producto.proveedor_id ";
 
+    public void setCantidad(int cantidad) {
+        this.cantidad = new SimpleIntegerProperty(cantidad);
+    }
     public Integer getId() {
         return id.get();
+
+    }
+    public Integer getCantidad() {
+        return cantidad.get();
 
     }
 
@@ -84,7 +94,27 @@ public class Producto {
         this.proveedor = new SimpleStringProperty(proveedor);
 
     }
+    
+    public Producto(Integer id, String nombre, String precio, Integer folio,Integer cantidad) {
+        this.id = new SimpleIntegerProperty(id);
+        this.nombre = new SimpleStringProperty(nombre);
+        this.precio = new SimpleStringProperty(precio);
+        this.folio = new SimpleIntegerProperty(folio);
+        this.cantidad = new SimpleIntegerProperty(cantidad);
+        
 
+    }
+    public static void llenarVenta(ObservableList<Producto> lista,Producto producto){
+        lista.add(new Producto(
+        producto.getId(),
+        producto.getNombre(),
+        producto.getPrecio(),
+        producto.getFolio(),
+        producto.getCantidad()
+        ));
+    
+    
+    }
     public static void llenarInfoProductos(ObservableList<Producto> lista) {
         Conexion con = new Conexion();
         Connection st = con.conectate();
