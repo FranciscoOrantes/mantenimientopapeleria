@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="598.0" prefWidth="650.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Controlador.MenuController">
+   <children>
+      <ImageView fx:id="btnProductos" fitHeight="85.0" fitWidth="120.0" layoutX="14.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/gift.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnUsuarios" fitHeight="85.0" fitWidth="120.0" layoutX="14.0" layoutY="491.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/group.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnProveedores" fitHeight="85.0" fitWidth="120.0" layoutX="14.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/supply.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnVentas" fitHeight="85.0" fitWidth="120.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/commission.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnReportes" fitHeight="85.0" fitWidth="120.0" layoutX="14.0" layoutY="383.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/analysis.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="txtVentas" layoutX="30.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ventas" />
+      <Text fx:id="txtProductos" layoutX="30.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Productos" />
+      <Text fx:id="txtProveedores" layoutX="30.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Proveedores" />
+      <Text fx:id="txtReportes" layoutX="24.0" layoutY="481.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reportes" />
+      <Text fx:id="txtUsuarios" layoutX="34.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuarios" />
+   </children>
+</AnchorPane>

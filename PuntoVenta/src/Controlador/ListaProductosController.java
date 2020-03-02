@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.List;
 import Modelo.Producto;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -18,13 +19,17 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
@@ -56,8 +61,16 @@ public class ListaProductosController implements Initializable {
     private int posicionProductoEnTabla;
     private String opcionFiltro,nombre,precio,descripcion;
     private int id,folio;
-    @FXML private void anadir(ActionEvent event){
+    static Stage ventanaInicio;
+    static FXMLLoader loaderInicioAdmin;
+    @FXML private void anadir(ActionEvent event) throws IOException{
         
+       loaderInicioAdmin = new FXMLLoader(getClass().getResource("/Vista/RegistroProducto.fxml"));
+                    Parent root1 = (Parent) loaderInicioAdmin.load();
+                    ventanaInicio = new Stage();
+                    ventanaInicio.setScene(new Scene(root1));
+                    ventanaInicio.setResizable(false);
+                    ventanaInicio.show(); 
     }
     @FXML private void eliminar(ActionEvent event) throws SQLException{
         Producto product = new Producto();
@@ -123,7 +136,8 @@ public class ListaProductosController implements Initializable {
             
 
         }
-    }
+    } 
+     
       public void inicializarTablaProductos() {
           productos = FXCollections.observableArrayList();
           Producto.llenarInfoProductos(productos);
@@ -192,6 +206,7 @@ public class ListaProductosController implements Initializable {
        descripcionTF.setEditable(false);
        precioTF.setEditable(false);
        folioTF.setEditable(false);
+       filtrado.valueProperty().set(null);
         
     }
 }

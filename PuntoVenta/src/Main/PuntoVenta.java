@@ -5,7 +5,6 @@
  */
 package Main;
 
-import Modelo.Conexion;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -25,8 +24,9 @@ public class PuntoVenta extends Application {
     static Stage ventanaLogin;
     @Override
     public void start(Stage primaryStage) throws IOException {
+        
         this.ventanaLogin = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("/Vista/ListaProductos.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Vista/Login.fxml"));
         Scene scene = new Scene(root);
         ventanaLogin.setScene(scene);
         ventanaLogin.setResizable(false);
@@ -37,10 +37,7 @@ public class PuntoVenta extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
         launch(args);
-        Conexion conection= new Conexion();
-        conection.conectate();
     }
     
 }

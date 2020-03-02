@@ -1,0 +1,10 @@
+.button {
+    -fx-text-fill: black;
+    -fx-font-family: "Yu Gothic Medium";
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#ffffff, #ffffff);
+	-fx-border-color:#F0F0F0;
+	-fx-border-width: 1;
+	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.2) , 1,0,0, 2);
+}
