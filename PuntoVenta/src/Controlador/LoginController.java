@@ -40,6 +40,7 @@ public class LoginController implements Initializable {
      static Stage ventanaInicio;
     static FXMLLoader loaderInicioAdmin;
     
+    
     /**
      * Initializes the controller class.
      */

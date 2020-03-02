@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import Controlador.LoginController;
+import Controlador.MenuController;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -65,13 +67,15 @@ public class InicioSesion {
             rs = pst2.executeQuery();
 
             if (rs.next()) {
+                MenuController.tipoUsuario=rs.getString("tipoUsuario");
                 Alert dialogoAlerta = new Alert(Alert.AlertType.INFORMATION);
                 dialogoAlerta.setTitle("Inicio de sesion");
                 dialogoAlerta.setHeaderText("Correcto");
                 dialogoAlerta.setContentText("Ha iniciado sesión con éxito");
                 dialogoAlerta.initStyle(StageStyle.UTILITY);
                 dialogoAlerta.showAndWait();
-                loaderInicioAdmin = new FXMLLoader(getClass().getResource("/Vista/ListaProductos.fxml"));
+                
+                loaderInicioAdmin = new FXMLLoader(getClass().getResource("/Vista/RegistroProveedor.fxml"));
                     Parent root1 = (Parent) loaderInicioAdmin.load();
                     ventanaInicio = new Stage();
                     ventanaInicio.setScene(new Scene(root1));
@@ -93,7 +97,7 @@ public class InicioSesion {
             
             Alert dialogoAlerta = new Alert(Alert.AlertType.WARNING);
             dialogoAlerta.setTitle("Error");
-            dialogoAlerta.setHeaderText("Ha Ocurrido un error con la BD");
+            dialogoAlerta.setHeaderText("Ha Ocurrido un error con la BD " +e );
 
             dialogoAlerta.initStyle(StageStyle.UTILITY);
             dialogoAlerta.showAndWait();

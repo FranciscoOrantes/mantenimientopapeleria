@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import java.sql.Connection;
@@ -130,4 +125,29 @@ public class Proveedor {
         } catch (SQLException e) {
         }
     }
+    
+    public void registrarProveedor(String nombreCampo,String apellidoPaternoCampo,String apellidoMaternoCampo,String telefonoCampo,String empresaCampo,String correoCampo,String direccionCampo){
+        Conexion con = new Conexion();
+        Connection st = con.conectate();
+        try {
+            Statement execute = st.createStatement();
+            PreparedStatement pst =st.prepareStatement("INSERT INTO proveedor(nombre,apellidoPaterno,apellidoMaterno,telefono,direccion,correo,empresa) VALUES(?,?,?,?,?,?,?)");
+            pst.setString(1, nombreCampo);
+            pst.setString(2, apellidoPaternoCampo);
+            pst.setString(3, apellidoMaternoCampo);
+            pst.setString(4, telefonoCampo);
+            pst.setString(5, direccionCampo);
+            pst.setString(6, correoCampo);
+            pst.setString(7, empresaCampo);
+            pst.executeUpdate();
+            Alert dialogoAlerta = new Alert(Alert.AlertType.INFORMATION);
+                dialogoAlerta.setTitle("Registro de productos");
+                dialogoAlerta.setHeaderText("Correcto");
+                dialogoAlerta.setContentText("Ha registrado un proveedor con éxito");
+                dialogoAlerta.initStyle(StageStyle.UTILITY);
+                dialogoAlerta.showAndWait();
+        } catch (Exception e) {
+            System.err.println("Error " + e);
+        }
+        }
 }
