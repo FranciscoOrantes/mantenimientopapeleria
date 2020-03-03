@@ -1,5 +1,9 @@
 package Modelo;
 
+import static Modelo.Producto.FiltradoProveedores;
+import static Modelo.Producto.filtradoCategoria;
+import static Modelo.Producto.filtradoPrecio;
+import static Modelo.Producto.getDataFilter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.stage.StageStyle;
 
@@ -23,10 +28,11 @@ public class Proveedor {
     public SimpleStringProperty nombre = new SimpleStringProperty();
     public SimpleStringProperty apellidoPaterno = new SimpleStringProperty();
     public SimpleStringProperty apellidoMaterno = new SimpleStringProperty();
-    public SimpleIntegerProperty telefono = new SimpleIntegerProperty();
+    public SimpleStringProperty telefono = new SimpleStringProperty();
     public SimpleStringProperty direccion = new SimpleStringProperty();
     public SimpleStringProperty correo = new SimpleStringProperty();
     public SimpleStringProperty empresa = new SimpleStringProperty();
+    static String getDataFilter = "SELECT * FROM proveedor ";
 
     public Integer getId() {
         return id.get();
@@ -44,7 +50,7 @@ public class Proveedor {
         return apellidoMaterno.get();
     }
 
-    public Integer getTelefono() {
+    public String getTelefono() {
         return telefono.get();
     }
 
@@ -60,22 +66,136 @@ public class Proveedor {
         return empresa.get();
     }
 
-    public Proveedor(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno, Integer telefono, String direccion, String correo, String empresa) {
+    public Proveedor(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String direccion, String correo, String empresa) {
         this.id = new SimpleIntegerProperty(id);
         this.nombre = new SimpleStringProperty(nombre);
         this.apellidoPaterno = new SimpleStringProperty(apellidoPaterno);
         this.apellidoMaterno = new SimpleStringProperty(apellidoMaterno);
-        this.telefono = new SimpleIntegerProperty(telefono);
+        this.telefono = new SimpleStringProperty(telefono);
         this.direccion = new SimpleStringProperty(direccion);
         this.correo = new SimpleStringProperty(correo);
         this.empresa = new SimpleStringProperty(empresa);
+    }
+    public static void llenarInfoProveedores(ObservableList<Proveedor> lista) {
+        Conexion con = new Conexion();
+        Connection st = con.conectate();
+        ResultSet rs;
+
+        try {
+            Statement execute = st.createStatement();
+
+            PreparedStatement pst = st.prepareStatement(
+                    "SELECT * FROM proveedor");
+            rs = pst.executeQuery();
+            while (rs.next()) {
+
+                lista.add(
+                        new Proveedor(
+                                rs.getInt("proveedor.id"),
+                                rs.getString("proveedor.nombre"),
+                                rs.getString("proveedor.apellidoPaterno"),
+                                rs.getString("proveedor.apellidoMaterno"),
+                                rs.getString("proveedor.telefono"),
+                                rs.getString("proveedor.direccion"),
+                                rs.getString("proveedor.correo"),
+                                rs.getString("proveedor.empresa")
+                        )
+                );
+
+            }
+
+        } catch (Exception e) {
+            System.err.println("excetpcion " + e);
+
+        }
+    }
+    public static void filtradoPrincipal(String filtrado,ObservableList<Proveedor> lista,String valor) throws SQLException {
+        if (filtrado.equals("Nombre")) {
+           filtradoNombre(lista,valor);
+        }
+        if(filtrado.equals("Telefono")){
+            filtradoTelefono(lista,valor);
+        }
+        if(filtrado.equals("Empresa")){
+            filtradoEmpresa(lista,valor);
+        }
+    }
+    public static void filtradoNombre(ObservableList<Proveedor> lista,String nombre) throws SQLException {
+        Conexion con = new Conexion();
+        Connection st = con.conectate();
+        ResultSet rs;
+        Statement execute = st.createStatement();
+        PreparedStatement pst = st.prepareStatement(getDataFilter + "Where proveedor.nombre LIKE '%" + nombre + "%'");
+        rs = pst.executeQuery();
+        while (rs.next()) {
+            lista.add(
+                        new Proveedor(
+                                rs.getInt("proveedor.id"),
+                                rs.getString("proveedor.nombre"),
+                                rs.getString("proveedor.apellidoPaterno"),
+                                rs.getString("proveedor.apellidoMaterno"),
+                                rs.getString("proveedor.telefono"),
+                                rs.getString("proveedor.direccion"),
+                                rs.getString("proveedor.correo"),
+                                rs.getString("proveedor.empresa")
+                        )
+                );
+        }
+    }
+    public static void filtradoTelefono(ObservableList<Proveedor> lista,String telefonoI) throws SQLException {
+        Conexion con = new Conexion();
+        Connection st = con.conectate();
+        ResultSet rs;
+        Statement execute = st.createStatement();
+        PreparedStatement pst = st.prepareStatement(getDataFilter + "where proveedor.telefono LIKE '%" + telefonoI +"%'");
+        rs = pst.executeQuery();
+        try {
+            while (rs.next()) {
+                lista.add(
+                        new Proveedor(
+                                rs.getInt("proveedor.id"),
+                                rs.getString("proveedor.nombre"),
+                                rs.getString("proveedor.apellidoPaterno"),
+                                rs.getString("proveedor.apellidoMaterno"),
+                                rs.getString("proveedor.telefono"),
+                                rs.getString("proveedor.direccion"),
+                                rs.getString("proveedor.correo"),
+                                rs.getString("proveedor.empresa")
+                        )
+                );
+            }
+        } catch (SQLException e) {
+        }
+    }
+    public static void filtradoEmpresa(ObservableList<Proveedor> lista,String empresa) throws SQLException {
+         Conexion con = new Conexion();
+        Connection st = con.conectate();
+        ResultSet rs;
+        Statement execute = st.createStatement();
+        PreparedStatement pst = st.prepareStatement(getDataFilter + "Where proveedor.empresa LIKE '%" + empresa + "%'");
+        rs = pst.executeQuery();
+        while (rs.next()) {
+                lista.add(
+                        new Proveedor(
+                                rs.getInt("proveedor.id"),
+                                rs.getString("proveedor.nombre"),
+                                rs.getString("proveedor.apellidoPaterno"),
+                                rs.getString("proveedor.apellidoMaterno"),
+                                rs.getString("proveedor.telefono"),
+                                rs.getString("proveedor.direccion"),
+                                rs.getString("proveedor.correo"),
+                                rs.getString("proveedor.empresa")
+                        )
+                );
+            }
+        
     }
 
     
     
     /*  --- NOTA --- */
 // Lo tengo instanciado en la Clase PuntoVenta(carpeta Main) -> Sólo para prueba -> Code en la linea: 41
-    public void updateProveedor(int id, String nombre, String apellidoPaterno, String apellidoMaterno, int telefono, String direccion, String correo, String empresa) throws SQLException {
+    public void updateProveedor(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String direccion, String correo, String empresa) throws SQLException {
         Conexion con = new Conexion();
         Connection st = con.conectate();
 
@@ -86,7 +206,7 @@ public class Proveedor {
             pst.setString(1, nombre);
             pst.setString(2, apellidoPaterno);
             pst.setString(3, apellidoMaterno);
-            pst.setInt(4, telefono);
+            pst.setString(4, telefono);
             pst.setString(5, direccion);
             pst.setString(6, correo);
             pst.setString(7, empresa);
