@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="220" pageHeight="600" columnWidth="180" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7bbd0144-0761-487e-bd8b-acc1d00c7a9c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="159"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="49" y="15" width="120" height="20" uuid="66d0b53d-f115-4d5a-83d8-21f86d51f183"/>
+				<textElement>
+					<font fontName="Monospaced" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Paper Land]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="39" width="170" height="20" uuid="1b855cd9-ba5a-42a9-8e3b-5bc7ef612173"/>
+				<text><![CDATA[--------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="55" width="157" height="20" uuid="2853c90e-681d-4a9b-825f-1c81e940c79a"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<text><![CDATA[Tuxtla Gutierrez,Chiapas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="8" y="3" width="100" height="20" uuid="a6f8be38-ca4c-4f68-a8c6-b58b84543d9c"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<text><![CDATA[Recibo No.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="11" y="32" width="167" height="20" uuid="9e05ab92-2e2a-4586-952c-e8a939c14b21"/>
+				<text><![CDATA[-----------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="14" width="100" height="20" uuid="3780a292-5755-4ed4-a988-aafb61c7c3f3"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<text><![CDATA[Impreso :]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="15" width="201" height="20" uuid="4576effc-2f26-440d-b537-aba483807f82"/>
+				<textElement>
+					<font fontName="Monospaced" size="9"/>
+				</textElement>
+				<text><![CDATA[*** I.V.A INCLUIDO EN EL PRECIO ***]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="56" splitType="Stretch"/>
+	</summary>
+</jasperReport>
