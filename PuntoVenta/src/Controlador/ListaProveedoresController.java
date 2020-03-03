@@ -5,8 +5,7 @@
  */
 package Controlador;
 
-import static Controlador.ListaProductosController.loaderInicioAdmin;
-import Modelo.Producto;
+
 import Modelo.Proveedor;
 import java.io.IOException;
 import java.net.URL;
@@ -61,7 +60,8 @@ public class ListaProveedoresController implements Initializable {
     @FXML private ComboBox filtrado;
     private ObservableList<Proveedor> proveedores;
     private int posicionProveedorEnTabla;
-    private String opcionFiltro,nombre,apellidoP,apellidoM,telefono,direccion,correo,empresa;
+    private String nombre,apellidoP,apellidoM,telefono,direccion,correo,empresa;
+    private  String opFiltro="";
     private int id;
     static Stage ventanaInicio;
     static FXMLLoader loaderInicioAdmin;
@@ -174,13 +174,14 @@ public class ListaProveedoresController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        
        proveedores = FXCollections.observableArrayList();
        this.inicializarTablaProveedor();
        modificarBT.setDisable(true);
        eliminarBT.setDisable(true);
-        final ObservableList<Proveedor> tablaProveedorSel = tablaProveedor.getSelectionModel().getSelectedItems();
-        tablaProveedorSel.addListener(selectorTablaProveedores);
-        filtrado.getItems().addAll(
+       final ObservableList<Proveedor> tablaProveedorSel = tablaProveedor.getSelectionModel().getSelectedItems();
+       tablaProveedorSel.addListener(selectorTablaProveedores);
+       filtrado.getItems().addAll(
                 "Nombre",
                 "Telefono",
                 "Empresa"
@@ -208,13 +209,21 @@ public class ListaProveedoresController implements Initializable {
        
     }
     public void getFilter(){
-        opcionFiltro = filtrado.getValue().toString();
+    
+           try {
+            opFiltro = filtrado.getValue().toString();
+        } catch (Exception e) {
+              
+        }
+
+        
+        
         
     }
     public void buscarProveedor() throws SQLException {
         String valor= indiceBusqueda.getText();
         proveedores = FXCollections.observableArrayList();
-        Proveedor.filtradoPrincipal(opcionFiltro,proveedores,valor);
+        Proveedor.filtradoPrincipal(opFiltro,proveedores,valor);
         tablaProveedor.setItems(proveedores);
         nombreCol.setCellValueFactory(new PropertyValueFactory<Proveedor, String>("nombre"));
         apellidoPaternoCol.setCellValueFactory(new PropertyValueFactory<Proveedor, String>("apellidoPaterno"));

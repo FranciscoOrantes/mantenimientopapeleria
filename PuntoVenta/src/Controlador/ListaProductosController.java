@@ -6,9 +6,6 @@
 package Controlador;
 
 import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
-import java.net.URL;
 import java.util.List;
 import Modelo.Producto;
 import java.io.IOException;
@@ -44,6 +41,7 @@ public class ListaProductosController implements Initializable {
     @FXML private TextField nombreTF;
     @FXML private TextField descripcionTF;
     @FXML private TextField precioTF;
+    @FXML private TextField cantidadTF;
     @FXML private TextField folioTF;
     @FXML private TextField tipoTF;
     @FXML private TextField proveedorTF;
@@ -53,6 +51,7 @@ public class ListaProductosController implements Initializable {
     @FXML private TableColumn nombreCol;
     @FXML private TableColumn descripcionCol;
     @FXML private TableColumn precioCol;
+    @FXML private TableColumn cantidadCol;
     @FXML private TableColumn folioCol;
     @FXML private TableColumn tipoCol;
     @FXML private TableColumn proveedorCol;
@@ -60,7 +59,7 @@ public class ListaProductosController implements Initializable {
     private ObservableList<Producto> productos;
     private int posicionProductoEnTabla;
     private String opcionFiltro,nombre,precio,descripcion;
-    private int id,folio;
+    private int id,folio,cantidad;
     static Stage ventanaInicio;
     static FXMLLoader loaderInicioAdmin;
     @FXML private void anadir(ActionEvent event) throws IOException{
@@ -81,14 +80,16 @@ public class ListaProductosController implements Initializable {
     @FXML private void modificar(ActionEvent event) throws SQLException{
             nombre = nombreTF.getText();
             precio = precioTF.getText();
+            cantidad =Integer.valueOf(cantidadTF.getText());
             descripcion = descripcionTF.getText();
             folio = Integer.valueOf(folioTF.getText());
         Producto product = new Producto();
         
-        product.updateProduct(id,nombre,descripcion,precio,folio);
+        product.updateProduct(id,nombre,descripcion,precio,cantidad,folio);
         nombreTF.clear();
        descripcionTF.clear();
        precioTF.clear();
+       cantidadTF.clear();
        folioTF.clear();
         inicializarTablaProductos();
     }
@@ -122,6 +123,7 @@ public class ListaProductosController implements Initializable {
             nombreTF.setText(producto.getNombre());
             descripcionTF.setText(producto.getDescripcion());
             precioTF.setText(String.valueOf(producto.getPrecio()));
+            cantidadTF.setText(String.valueOf(producto.getCantidad()));
             folioTF.setText(String.valueOf(producto.getFolio()));
             id=producto.getId();
             
@@ -133,6 +135,7 @@ public class ListaProductosController implements Initializable {
             descripcionTF.setEditable(true);
             precioTF.setEditable(true);
             folioTF.setEditable(true);
+            cantidadTF.setEditable(true);
             
 
         }
@@ -145,6 +148,7 @@ public class ListaProductosController implements Initializable {
         nombreCol.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombre"));
         descripcionCol.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcion"));
         precioCol.setCellValueFactory(new PropertyValueFactory<Producto, Float>("precio"));
+        cantidadCol.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("cantidad"));
         folioCol.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("folio"));
         tipoCol.setCellValueFactory(new PropertyValueFactory<Producto, String>("tipo"));
         proveedorCol.setCellValueFactory(new PropertyValueFactory<Producto, String>("proveedor"));
@@ -153,6 +157,7 @@ public class ListaProductosController implements Initializable {
        descripcionTF.setEditable(false);
        precioTF.setEditable(false);
        folioTF.setEditable(false);
+       cantidadTF.setEditable(false);
         
     }
 
@@ -179,15 +184,21 @@ public class ListaProductosController implements Initializable {
        nombreTF.setEditable(false);
        descripcionTF.setEditable(false);
        precioTF.setEditable(false);
+       cantidadTF.setEditable(false);
        folioTF.setEditable(false);
        nombreTF.clear();
        descripcionTF.clear();
        precioTF.clear();
        folioTF.clear();
+       cantidadTF.clear();
        
     }
     public void getFilter(){
-        opcionFiltro = filtrado.getValue().toString();
+        try {
+            opcionFiltro = filtrado.getValue().toString();
+        } catch (Exception e) {
+        }
+        
         
     }
     public void buscarProducto() throws SQLException {
@@ -199,6 +210,7 @@ public class ListaProductosController implements Initializable {
         descripcionCol.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcion"));
         precioCol.setCellValueFactory(new PropertyValueFactory<Producto, String>("precio"));
         folioCol.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("folio"));
+        cantidadCol.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("cantidad"));
         tipoCol.setCellValueFactory(new PropertyValueFactory<Producto, String>("tipo"));
         proveedorCol.setCellValueFactory(new PropertyValueFactory<Producto, String>("proveedor"));
 
@@ -206,6 +218,7 @@ public class ListaProductosController implements Initializable {
        descripcionTF.setEditable(false);
        precioTF.setEditable(false);
        folioTF.setEditable(false);
+       cantidadTF.setEditable(false);
        filtrado.valueProperty().set(null);
         
     }

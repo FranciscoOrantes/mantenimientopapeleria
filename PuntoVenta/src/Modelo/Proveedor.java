@@ -1,9 +1,5 @@
 package Modelo;
 
-import static Modelo.Producto.FiltradoProveedores;
-import static Modelo.Producto.filtradoCategoria;
-import static Modelo.Producto.filtradoPrecio;
-import static Modelo.Producto.getDataFilter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -110,6 +106,7 @@ public class Proveedor {
         }
     }
     public static void filtradoPrincipal(String filtrado,ObservableList<Proveedor> lista,String valor) throws SQLException {
+        System.out.println("el valor fue "+filtrado);
         if (filtrado.equals("Nombre")) {
            filtradoNombre(lista,valor);
         }
@@ -125,7 +122,7 @@ public class Proveedor {
         Connection st = con.conectate();
         ResultSet rs;
         Statement execute = st.createStatement();
-        PreparedStatement pst = st.prepareStatement(getDataFilter + "Where proveedor.nombre LIKE '%" + nombre + "%'");
+        PreparedStatement pst = st.prepareStatement(getDataFilter + "WHERE proveedor.nombre LIKE '%" + nombre + "%'");
         rs = pst.executeQuery();
         while (rs.next()) {
             lista.add(
@@ -190,11 +187,6 @@ public class Proveedor {
             }
         
     }
-
-    
-    
-    /*  --- NOTA --- */
-// Lo tengo instanciado en la Clase PuntoVenta(carpeta Main) -> Sólo para prueba -> Code en la linea: 41
     public void updateProveedor(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String direccion, String correo, String empresa) throws SQLException {
         Conexion con = new Conexion();
         Connection st = con.conectate();

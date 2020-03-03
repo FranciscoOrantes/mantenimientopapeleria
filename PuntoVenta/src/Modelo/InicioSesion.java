@@ -75,7 +75,7 @@ public class InicioSesion {
                 dialogoAlerta.initStyle(StageStyle.UTILITY);
                 dialogoAlerta.showAndWait();
                 
-                    loaderInicioAdmin = new FXMLLoader(getClass().getResource("/Vista/ListaProveedores.fxml"));
+                    loaderInicioAdmin = new FXMLLoader(getClass().getResource("/Vista/ListaProductos.fxml"));
                     Parent root1 = (Parent) loaderInicioAdmin.load();
                     ventanaInicio = new Stage();
                     ventanaInicio.setScene(new Scene(root1));
