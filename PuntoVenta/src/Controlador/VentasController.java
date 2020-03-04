@@ -91,11 +91,8 @@ public class VentasController implements Initializable {
         tablaProducto.setItems(productos);
         nombreCol.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombre"));
         precioCol.setCellValueFactory(new PropertyValueFactory<Producto, Float>("precio"));
-        folioCol.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("Folio"));
-       
-        
+        folioCol.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("Folio"));   
     }
-      
           public Producto getTablaProductosSeleccionada() {
         if (tablaProducto != null) {
             List<Producto> tabla = tablaProducto.getSelectionModel().getSelectedItems();
@@ -118,7 +115,7 @@ public class VentasController implements Initializable {
         final Producto producto = getTablaProductosSeleccionada();
         
         if(Integer.valueOf(Integer.valueOf(result.get()))>producto.getCantidad()){
-            producto.setCantidad(Integer.valueOf(result.get()));
+            
         Alert alert = new Alert(AlertType.WARNING);
     alert.setTitle("Advertencia");
     alert.setHeaderText("Cantidades no validas");
@@ -126,6 +123,7 @@ public class VentasController implements Initializable {
 
     alert.showAndWait();
         }else{
+        producto.setCantidad(Integer.valueOf(result.get()));
         Producto.llenarVenta(ventas,producto);
         tablaVenta.setItems(ventas);
         nombreVenta.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombre"));
@@ -142,7 +140,7 @@ public class VentasController implements Initializable {
             Producto.llenarVenta2(ventas2, producto,nombresProductos,cantidadProductos,precioProductos);
 
         }
-        //result.ifPresent(name -> System.out.println("Your name: " + name));
+        
         }
      } 
      
@@ -156,11 +154,11 @@ public class VentasController implements Initializable {
        Optional<ButtonType> result = alert.showAndWait();
        if (result.get() == ButtonType.OK){
           Reporte reporte = new Reporte();
-          System.out.println(fechaVenta.getText());
+          Producto productoActualizable = new Producto();
           try{
-          System.out.println(precioProductos.get(0));
+          System.out.println("Productos " + productos.get(0).getCantidad() + " ventas " + ventas.get(0).getCantidad());
           reporte.generarTicketVenta(fechaVenta.getText(),Float.parseFloat(totalVenta.getText()),nombresProductos,cantidadProductos,precioProductos);
-          
+          productoActualizable.updateCantidad(ventas);
           }catch(Exception e){
           System.err.println(e);
           }

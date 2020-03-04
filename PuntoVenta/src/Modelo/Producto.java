@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -23,7 +24,7 @@ import javafx.stage.StageStyle;
  * @author Santiago
  */
 public class Producto {
-  
+  ArrayList<Integer> cantidades = new ArrayList<Integer>();
     public Producto(){
         
     }
@@ -289,6 +290,7 @@ public class Producto {
         Connection st = con.conectate();
 
         try {
+            
             Statement execute = st.createStatement();
             PreparedStatement pst = st.prepareStatement("UPDATE producto SET nombre = ?, descripcion = ?, precio = ?, cantidad = ?, folio = ? WHERE id = ?");
 
@@ -301,6 +303,58 @@ public class Producto {
             pst.setInt(6, id);
 
             int res = pst.executeUpdate();
+
+            if (res > 0) {
+                Alert dialogoAlerta = new Alert(Alert.AlertType.INFORMATION);
+                dialogoAlerta.setTitle("Exito");
+                dialogoAlerta.setHeaderText("Se han actualizado los Datos");
+                dialogoAlerta.initStyle(StageStyle.UTILITY);
+                dialogoAlerta.showAndWait();
+            }
+
+        } catch (Exception e) {
+            System.err.println("EXCEPCION " + e);
+            Alert dialogoAlerta = new Alert(Alert.AlertType.ERROR);
+            dialogoAlerta.setTitle("Error");
+            dialogoAlerta.setHeaderText("Ha ocurrido un error con la BD");
+            dialogoAlerta.initStyle(StageStyle.UTILITY);
+            dialogoAlerta.showAndWait();
+        }
+        st.close();
+    }
+     public void updateCantidad(ObservableList<Producto>productos) throws SQLException {
+         int cantidadActualizar = 0;
+         int res = 0;
+        Conexion con = new Conexion();
+        Connection st = con.conectate();
+        ResultSet rs;
+        try {
+           PreparedStatement pstCantidad = st.prepareStatement(
+                    "SELECT producto.cantidad FROM producto WHERE id = ? ");
+           for (Producto producto1 : productos) {
+               pstCantidad.setInt(1, producto1.getId());
+            rs = pstCantidad.executeQuery();
+            while(rs.next()){
+            cantidades.add(rs.getInt("cantidad"));
+            }
+           }
+           
+            
+            
+            Statement execute = st.createStatement();
+            PreparedStatement pst = st.prepareStatement("UPDATE producto SET cantidad = ? WHERE id = ?");
+            for (Producto producto1 : productos) {
+            for(int cantidadBd: cantidades){
+                System.out.println("La cantidad en este producto es: " + cantidadBd);
+            cantidadActualizar=cantidadBd-producto1.getCantidad();
+            pst.setInt(1, cantidadActualizar);
+             pst.setInt(2, producto1.getId());
+             res = pst.executeUpdate();
+            }
+                
+                
+            }
+            
 
             if (res > 0) {
                 Alert dialogoAlerta = new Alert(Alert.AlertType.INFORMATION);
