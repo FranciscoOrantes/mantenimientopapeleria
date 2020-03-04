@@ -73,7 +73,7 @@ public void abrirUsuarios() throws IOException{
 
 public void abrirProveedores() throws IOException{
     //DIRIGIRSE A LISTA PROVEEDORES
-    loaderMenu = new FXMLLoader(getClass().getResource("/Vista/RegistroProveedor.fxml"));
+    loaderMenu = new FXMLLoader(getClass().getResource("/Vista/ListaProveedores.fxml"));
      Parent root1 = (Parent) loaderMenu.load();
      opcionMenu = new Stage();
      opcionMenu.setScene(new Scene(root1));

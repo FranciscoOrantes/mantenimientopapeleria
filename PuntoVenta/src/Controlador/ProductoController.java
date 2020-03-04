@@ -37,13 +37,14 @@ public class ProductoController implements Initializable {
     private String nombreCampo;
     private String descripcionCampo;
     private String precioCampo;
+    private int cantidadCampo;
     private int folioCampo;
     private int tipoProductoCampo;
     private int tipoProvedorCampo;
     ArrayList<String> lista1 = new ArrayList<String>();
     ArrayList<String> lista2 = new ArrayList<String>();
     @FXML
-    private TextField nombre,descripcion,precio,folio;
+    private TextField nombre,descripcion,precio,cantidad,folio;
     @FXML
     private ComboBox tipoProducto,tipoProvedor;
 
@@ -62,6 +63,7 @@ public class ProductoController implements Initializable {
          nombreCampo=  nombre.getText();
          descripcionCampo = descripcion.getText();
          precioCampo = precio.getText(); 
+         cantidadCampo = Integer.valueOf(cantidad.getText());
          folioCampo = Integer.valueOf(folio.getText());
          String var=(String) tipoProducto.getValue();
          String[] dato = var.split(" ");
@@ -71,11 +73,13 @@ public class ProductoController implements Initializable {
          tipoProductoCampo = Integer.valueOf(dato[0]);
          tipoProvedorCampo = Integer.valueOf(dato1[0]);
          Producto a= new Producto();
-         a.registrarProducto(nombreCampo,descripcionCampo,precioCampo,folioCampo,tipoProductoCampo,tipoProvedorCampo);
+         
+         a.registrarProducto(nombreCampo,descripcionCampo,precioCampo,cantidadCampo,folioCampo,tipoProductoCampo,tipoProvedorCampo);
          nombre.setText("");
          descripcion.setText("");
          folio.setText("");
          precio.setText("");
+         cantidad.setText("");
           Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();

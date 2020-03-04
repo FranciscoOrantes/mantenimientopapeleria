@@ -6,9 +6,15 @@
 package Controlador;
 
 import Modelo.Producto;
+import Modelo.Reporte;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -16,6 +22,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -24,6 +31,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
 
 /**
  * FXML Controller class
@@ -48,19 +56,30 @@ public class VentasController implements Initializable {
     @FXML private Button anadir;
     @FXML private Label fechaVenta;
     @FXML private Label totalVenta;
-    java.util.Date fecha = new Date();
+    public static String nombreCajero;
 
     
     private ObservableList<Producto> productos;
     private ObservableList<Producto> ventas;
+     private List<Producto> ventas2;
+      private List<String> nombresProductos;
+      private List<Integer> cantidadProductos;
+      private List<Float> precioProductos;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        SimpleDateFormat objSDF = new SimpleDateFormat("dd-MMM-yyyy"); 
+        Date fecha = new Date();
        productos = FXCollections.observableArrayList();
        ventas = FXCollections.observableArrayList();
+       ventas2 = new ArrayList<Producto>();
+       nombresProductos = new ArrayList<String>();
+        cantidadProductos = new ArrayList<Integer>();
+        precioProductos = new ArrayList<Float>();
        this.inicializarTablaProductos();
-       fechaVenta.setText(fecha.toString());
+       
+       fechaVenta.setText(objSDF.format(fecha).toString());
       
         
         // TODO
@@ -97,7 +116,16 @@ public class VentasController implements Initializable {
          Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
         final Producto producto = getTablaProductosSeleccionada();
-        producto.setCantidad(Integer.valueOf(result.get()));
+        
+        if(Integer.valueOf(Integer.valueOf(result.get()))>producto.getCantidad()){
+            producto.setCantidad(Integer.valueOf(result.get()));
+        Alert alert = new Alert(AlertType.WARNING);
+    alert.setTitle("Advertencia");
+    alert.setHeaderText("Cantidades no validas");
+    alert.setContentText("El producto no cuenta con esa cantidad, por favor ingrese una cantidad válida ");
+
+    alert.showAndWait();
+        }else{
         Producto.llenarVenta(ventas,producto);
         tablaVenta.setItems(ventas);
         nombreVenta.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombre"));
@@ -111,15 +139,15 @@ public class VentasController implements Initializable {
                 
             }
             totalVenta.setText(String.valueOf(res));
-            
+            Producto.llenarVenta2(ventas2, producto,nombresProductos,cantidadProductos,precioProductos);
 
         }
         //result.ifPresent(name -> System.out.println("Your name: " + name));
-        
+        }
      } 
      
      
-     public void endVenta(){
+     public void endVenta() {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
        alert.setTitle("Confirmar");
        alert.setHeaderText("");
@@ -127,7 +155,15 @@ public class VentasController implements Initializable {
 
        Optional<ButtonType> result = alert.showAndWait();
        if (result.get() == ButtonType.OK){
+          Reporte reporte = new Reporte();
+          System.out.println(fechaVenta.getText());
+          try{
+          System.out.println(precioProductos.get(0));
+          reporte.generarTicketVenta(fechaVenta.getText(),Float.parseFloat(totalVenta.getText()),nombresProductos,cantidadProductos,precioProductos);
           
+          }catch(Exception e){
+          System.err.println(e);
+          }
        } else {
            
        }

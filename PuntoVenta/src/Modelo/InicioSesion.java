@@ -7,6 +7,7 @@ package Modelo;
 
 import Controlador.LoginController;
 import Controlador.MenuController;
+import Controlador.VentasController;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -68,6 +69,7 @@ public class InicioSesion {
 
             if (rs.next()) {
                 MenuController.tipoUsuario=rs.getString("tipoUsuario");
+                VentasController.nombreCajero=rs.getString("nombre") + " " + rs.getString("apellidoPaterno")+ " "+ rs.getString("apellidoMaterno");
                 Alert dialogoAlerta = new Alert(Alert.AlertType.INFORMATION);
                 dialogoAlerta.setTitle("Inicio de sesion");
                 dialogoAlerta.setHeaderText("Correcto");
