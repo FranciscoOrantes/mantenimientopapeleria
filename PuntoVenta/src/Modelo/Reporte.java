@@ -58,7 +58,34 @@ public class Reporte {
         
             
             }
-       
-        
         }
+    public void generarCorteCaja(String fecha,float total){
+     Conexion con = new Conexion();
+        Connection st = con.conectate();
+    try{
+        JasperReport ticket = null;
+        String path = "/reportes/cortecaja.jasper";
+       
+        Map parametro = new HashMap();
+        parametro.put("fecha", fecha);
+        parametro.put("total", total);
+        
+        parametro.put("nombreCajero", VentasController.nombreCajero);
+         ticket = (JasperReport) JRLoader.loadObject(getClass().getResource(path));
+         
+          JasperPrint jprint = JasperFillManager.fillReport(ticket, parametro,st);
+          
+          
+
+        JasperViewer view = new JasperViewer(jprint, false);
+       
+        view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
+        view.setVisible(true);
+            }catch(Exception e){
+        System.err.println("Heey " +e);
+        
+            
+            }
+    }
 }

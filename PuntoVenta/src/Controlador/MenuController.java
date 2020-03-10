@@ -5,8 +5,13 @@
  */
 package Controlador;
 
+import Modelo.Producto;
+import Modelo.Reporte;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,13 +43,19 @@ public class MenuController implements Initializable {
      static Stage opcionMenu;
     static FXMLLoader loaderMenu;
     public static String tipoUsuario;
-    
+    float total;
+    Date fecha;
+    String fechaString;
      // Declaramos la tabla y las columnas
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         SimpleDateFormat objSDF = new SimpleDateFormat("dd-MMM-yyyy"); 
+        
+        fecha = new Date();
+        fechaString=objSDF.format(fecha).toString();
         if(tipoUsuario.equals("Cajero")){
         btnReportes.setVisible(false);
         btnUsuarios.setVisible(false);
@@ -90,7 +101,11 @@ public void abrirInventario() throws IOException{
      opcionMenu.show();
 }
 
-public void abrirReportes(){
+public void abrirReportes() throws SQLException{
     System.err.println("FALTA REPORTES");
+    Producto producto = new Producto();
+    total = producto.sumaTotalDia(fechaString);
+    Reporte reporte = new Reporte();
+    reporte.generarCorteCaja(fechaString, total);
 }   
 }

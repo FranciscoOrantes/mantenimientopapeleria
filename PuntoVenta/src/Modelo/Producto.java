@@ -5,12 +5,16 @@
  */
 package Modelo;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import java.util.List;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -25,8 +29,7 @@ import javafx.stage.StageStyle;
  */
 public class Producto {
   ArrayList<Integer> cantidades = new ArrayList<Integer>();
-    public Producto(){
-        
+    public Producto(){   
     }
 
     public String getNombreProducto() {
@@ -345,7 +348,7 @@ public class Producto {
             PreparedStatement pst = st.prepareStatement("UPDATE producto SET cantidad = ? WHERE id = ?");
             for (Producto producto1 : productos) {
             for(int cantidadBd: cantidades){
-                System.out.println("La cantidad en este producto es: " + cantidadBd);
+                
             cantidadActualizar=cantidadBd-producto1.getCantidad();
             pst.setInt(1, cantidadActualizar);
              pst.setInt(2, producto1.getId());
@@ -412,5 +415,48 @@ public class Producto {
             System.err.println("Error "+e);
         }
         }
+    public static void registrarVentas(ObservableList<Producto>ventas,String fecha,int usuario_id) throws SQLException{
+     Conexion con = new Conexion();
+     SecureRandom random = new SecureRandom();
+ String folio = new BigInteger(130, random).toString(32);
+     float monto =0;
+        Connection st = con.conectate();
+        try {
+            Statement execute = st.createStatement();
+        PreparedStatement pst =st.prepareStatement("INSERT INTO venta(producto_id,cantidad,monto,fecha,folio,usuario_id) VALUES(?,?,?,?,?,?)");
+        for (Producto producto1 : ventas) {
+            monto = producto1.getCantidad()*(Float.parseFloat(producto1.getPrecio()));
+            System.out.println("Monto " + monto);
+            pst.setInt(1, producto1.getId());
+            pst.setInt(2, producto1.getCantidad());
+            pst.setFloat(3, monto);
+            pst.setString(4, fecha);
+            pst.setString(5, folio);
+            pst.setInt(6, usuario_id);
+            pst.executeUpdate();
+        }
+        }catch(Exception e){
+        System.err.println("ERROR " + e);
+        }
+        }
+    public float sumaTotalDia(String fecha) throws SQLException {
+        float total = 0;
+        Conexion con = new Conexion();
+        Connection st = con.conectate();
+        ResultSet rs = null;
+        try {
+           PreparedStatement pstVenta = st.prepareStatement(
+                    "SELECT SUM(venta.monto)as suma FROM venta WHERE fecha = ? ");
+          pstVenta.setString(1, fecha);
+            rs = pstVenta.executeQuery();
+            if(rs.next()){
+            total = rs.getFloat("suma");
+            }
+        }catch(Exception e){
+        
+        }
+        return total;
+    }
+    }
 
-}
+

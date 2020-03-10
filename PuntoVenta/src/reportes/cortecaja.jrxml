@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="721e0791-2631-4b5c-8796-ba442ae7cf0b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nombreCajero" class="java.lang.String"/>
+	<parameter name="total" class="java.lang.Float"/>
+	<queryString>
+		<![CDATA[SELECT producto.nombre as nombre, producto.folio as folio , SUM(venta.cantidad) as cantidad, SUM(venta.monto) as monto FROM producto INNER JOIN venta ON producto.id = venta.producto_id WHERE venta.fecha=$P{fecha} GROUP BY producto.nombre]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="folio" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="monto" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="236" y="0" width="100" height="20" uuid="1c613c78-521d-4be9-8733-feabcb7df7a8"/>
+				<text><![CDATA[Corte de caja]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="236" y="30" width="100" height="20" uuid="dd0ec3d6-3853-49fe-a188-ee5b1a138c8c"/>
+				<text><![CDATA[Paper Land]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="59" width="37" height="20" uuid="f2fab0bb-3ee4-4116-981e-c820db024ca2"/>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="429" y="59" width="100" height="20" uuid="1916de3f-7ecd-4ef1-9761-c3f6a4a11e7c"/>
+				<textFieldExpression><![CDATA[$P{nombreCajero}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="336" y="59" width="93" height="20" uuid="234e5efb-077a-417a-ba4a-59608bf5dc30"/>
+				<text><![CDATA[Nombre del cajero:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="37" y="59" width="100" height="20" uuid="a69e6a6b-0544-4ee6-add6-09514ccb07db"/>
+				<textFieldExpression><![CDATA[$P{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="180" y="59" width="37" height="20" uuid="955fc3dd-5705-401a-a6b5-537673683f22"/>
+				<text><![CDATA[Total: $]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="216" y="59" width="100" height="20" uuid="b4390204-5b38-4a1a-88b6-cef456bd740f"/>
+				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="44" width="48" height="20" uuid="517e69a8-a0cf-4a25-8f4b-25f0ea13ec9b"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="272" y="44" width="48" height="20" uuid="a690a264-036e-4c3b-8efd-977daaa95008"/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="408" y="44" width="38" height="20" uuid="1efe5ed7-babd-4529-b4ad-7264964b237c"/>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="44" width="41" height="20" uuid="87c8d6c8-4ad4-4625-92b4-7dc457baa837"/>
+				<text><![CDATA[Folio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="0" width="100" height="20" uuid="2e1911c2-810c-4cb3-b4f7-d15988ee4957"/>
+				<text><![CDATA[Detalles]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="80" height="20" uuid="3e34f464-7b1a-4da9-8ccc-c84c4d58ad70"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="137" y="0" width="80" height="20" uuid="23e80f8b-40ec-496f-887c-b3f0cd6fcca7"/>
+				<textFieldExpression><![CDATA[$F{folio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="272" y="0" width="80" height="20" uuid="b4c7dc99-3caa-49da-a105-e2f27228e94c"/>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="408" y="0" width="80" height="20" uuid="3adda688-fc00-411d-b7bc-0e830d941516"/>
+				<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="76"/>
+	</columnFooter>
+</jasperReport>

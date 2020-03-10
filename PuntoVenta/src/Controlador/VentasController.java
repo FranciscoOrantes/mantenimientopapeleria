@@ -57,7 +57,9 @@ public class VentasController implements Initializable {
     @FXML private Label fechaVenta;
     @FXML private Label totalVenta;
     public static String nombreCajero;
-
+    public static int idCajero;
+    
+    Date fecha;
     
     private ObservableList<Producto> productos;
     private ObservableList<Producto> ventas;
@@ -70,7 +72,8 @@ public class VentasController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         SimpleDateFormat objSDF = new SimpleDateFormat("dd-MMM-yyyy"); 
-        Date fecha = new Date();
+        
+        fecha = new Date();
        productos = FXCollections.observableArrayList();
        ventas = FXCollections.observableArrayList();
        ventas2 = new ArrayList<Producto>();
@@ -80,8 +83,7 @@ public class VentasController implements Initializable {
        this.inicializarTablaProductos();
        
        fechaVenta.setText(objSDF.format(fecha).toString());
-      
-        
+       
         // TODO
     }    
     
@@ -156,8 +158,14 @@ public class VentasController implements Initializable {
           Reporte reporte = new Reporte();
           Producto productoActualizable = new Producto();
           try{
+          
           System.out.println("Productos " + productos.get(0).getCantidad() + " ventas " + ventas.get(0).getCantidad());
+           
           reporte.generarTicketVenta(fechaVenta.getText(),Float.parseFloat(totalVenta.getText()),nombresProductos,cantidadProductos,precioProductos);
+          //INSERTAR
+         
+        
+          Producto.registrarVentas(ventas, fechaVenta.getText(), idCajero);
           productoActualizable.updateCantidad(ventas);
           }catch(Exception e){
           System.err.println(e);

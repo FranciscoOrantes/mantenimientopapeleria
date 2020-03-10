@@ -70,6 +70,7 @@ public class InicioSesion {
             if (rs.next()) {
                 MenuController.tipoUsuario=rs.getString("tipoUsuario");
                 VentasController.nombreCajero=rs.getString("nombre") + " " + rs.getString("apellidoPaterno")+ " "+ rs.getString("apellidoMaterno");
+                VentasController.idCajero=rs.getInt("id");
                 Alert dialogoAlerta = new Alert(Alert.AlertType.INFORMATION);
                 dialogoAlerta.setTitle("Inicio de sesion");
                 dialogoAlerta.setHeaderText("Correcto");
