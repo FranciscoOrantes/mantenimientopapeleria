@@ -6,7 +6,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  *
@@ -56,6 +58,8 @@ public class ProveedorController {
     }
     @FXML
     private void cerrar(ActionEvent event){
-    System.out.println("Hola");
+    Node source = (Node) event.getSource();
+Stage stage = (Stage) source.getScene().getWindow();
+stage.close();    
     }
 }

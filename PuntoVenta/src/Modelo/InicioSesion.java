@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -53,7 +54,7 @@ public class InicioSesion {
 
    
 
-    public void buscarUsuario() throws SQLException {
+    public boolean buscarUsuario() throws SQLException {
 
         Conexion con = new Conexion();
         Connection st = con.conectate();
@@ -77,13 +78,9 @@ public class InicioSesion {
                 dialogoAlerta.setContentText("Ha iniciado sesión con éxito");
                 dialogoAlerta.initStyle(StageStyle.UTILITY);
                 dialogoAlerta.showAndWait();
+                return true;
                 
-                loaderInicioAdmin = new FXMLLoader(getClass().getResource("/Vista/Menu.fxml"));
-                    Parent root1 = (Parent) loaderInicioAdmin.load();
-                    ventanaInicio = new Stage();
-                    ventanaInicio.setScene(new Scene(root1));
-                    ventanaInicio.setResizable(false);
-                    ventanaInicio.show();
+                    
             } else {
 
                 Alert dialogoAlerta = new Alert(Alert.AlertType.WARNING);
@@ -92,7 +89,7 @@ public class InicioSesion {
                 dialogoAlerta.setContentText("Usuario o Contraseña incorrecta");
                 dialogoAlerta.initStyle(StageStyle.UTILITY);
                 dialogoAlerta.showAndWait();
-              
+              return false;
 
             }
 
@@ -107,5 +104,6 @@ public class InicioSesion {
         }
 
         con.conectate().close();
+        return false;
     }
 }
