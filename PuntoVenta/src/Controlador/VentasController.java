@@ -159,6 +159,7 @@ public class VentasController implements Initializable {
 
     public void llenarTablaVenta() {
         btnEliminar.setDisable(false);
+        btnEndVenta.setDisable(false);
         TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Ventas");
         dialog.setContentText("Ingresa la cantidad:");

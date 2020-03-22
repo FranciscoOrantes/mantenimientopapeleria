@@ -380,6 +380,7 @@ public class Producto {
             dialogoAlerta.initStyle(StageStyle.UTILITY);
             dialogoAlerta.showAndWait();
         }
+        cantidades.clear();
         st.close();
     }
      public void deleteProduct(int id) throws SQLException {
