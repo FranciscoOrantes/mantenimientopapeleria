@@ -327,6 +327,7 @@ public class Producto {
     }
      public void updateCantidad(ObservableList<Producto>productos) throws SQLException {
          System.out.println("TAMAÑO DEL OBSERVABLE LIST " +productos.size());
+         int contador = productos.size();
          int cantidadActualizar = 0;
          int res = 0;
         Conexion con = new Conexion();
@@ -347,21 +348,13 @@ public class Producto {
             
             Statement execute = st.createStatement();
             PreparedStatement pst = st.prepareStatement("UPDATE producto SET cantidad = ? WHERE id = ?");
-            for (Producto producto1 : productos) {
-            for(int cantidadBd: cantidades){
-                
-            cantidadActualizar=cantidadBd-producto1.getCantidad();
-            
-            }
-            
-            System.out.println("CANTIDAD QUE SE COMPRO " + producto1.getId() + " " + + producto1.getCantidad());
-            System.out.println("CANTIDAD A ACTUALIZAR " + producto1.getId() + " " + cantidadActualizar);
-            pst.setInt(1, cantidadActualizar);
-             pst.setInt(2, producto1.getId());
+            for (int i = 0; i < contador; i++) {
+                cantidadActualizar = cantidades.get(i)-productos.get(i).getCantidad();
+                 pst.setInt(1, cantidadActualizar);
+             pst.setInt(2, productos.get(i).getId());
              res = pst.executeUpdate();
-                
-                
             }
+            
             
 
             if (res > 0) {
@@ -381,6 +374,7 @@ public class Producto {
             dialogoAlerta.showAndWait();
         }
         cantidades.clear();
+        productos.clear();
         st.close();
     }
      public void deleteProduct(int id) throws SQLException {
