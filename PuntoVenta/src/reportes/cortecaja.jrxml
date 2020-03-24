@@ -29,23 +29,35 @@
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="236" y="0" width="100" height="20" uuid="1c613c78-521d-4be9-8733-feabcb7df7a8"/>
+				<reportElement x="190" y="0" width="198" height="30" uuid="1c613c78-521d-4be9-8733-feabcb7df7a8"/>
+				<textElement>
+					<font fontName="Monospaced" size="18" isBold="true"/>
+				</textElement>
 				<text><![CDATA[Corte de caja]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="236" y="30" width="100" height="20" uuid="dd0ec3d6-3853-49fe-a188-ee5b1a138c8c"/>
+				<reportElement x="220" y="30" width="100" height="20" uuid="dd0ec3d6-3853-49fe-a188-ee5b1a138c8c"/>
+				<textElement>
+					<font fontName="Monospaced" size="12" isBold="true"/>
+				</textElement>
 				<text><![CDATA[Paper Land]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="59" width="37" height="20" uuid="f2fab0bb-3ee4-4116-981e-c820db024ca2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Fecha:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="429" y="59" width="100" height="20" uuid="1916de3f-7ecd-4ef1-9761-c3f6a4a11e7c"/>
+				<reportElement x="431" y="59" width="100" height="20" uuid="1916de3f-7ecd-4ef1-9761-c3f6a4a11e7c"/>
 				<textFieldExpression><![CDATA[$P{nombreCajero}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="336" y="59" width="93" height="20" uuid="234e5efb-077a-417a-ba4a-59608bf5dc30"/>
+				<reportElement x="336" y="59" width="95" height="20" uuid="234e5efb-077a-417a-ba4a-59608bf5dc30"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Nombre del cajero:]]></text>
 			</staticText>
 			<textField>
@@ -54,6 +66,9 @@
 			</textField>
 			<staticText>
 				<reportElement x="180" y="59" width="37" height="20" uuid="955fc3dd-5705-401a-a6b5-537673683f22"/>
+				<textElement>
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
 				<text><![CDATA[Total: $]]></text>
 			</staticText>
 			<textField>
@@ -66,22 +81,37 @@
 		<band height="64" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="44" width="48" height="20" uuid="517e69a8-a0cf-4a25-8f4b-25f0ea13ec9b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="272" y="44" width="48" height="20" uuid="a690a264-036e-4c3b-8efd-977daaa95008"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="408" y="44" width="38" height="20" uuid="1efe5ed7-babd-4529-b4ad-7264964b237c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Monto]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="136" y="44" width="41" height="20" uuid="87c8d6c8-4ad4-4625-92b4-7dc457baa837"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Folio]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="217" y="0" width="100" height="20" uuid="2e1911c2-810c-4cb3-b4f7-d15988ee4957"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
 				<text><![CDATA[Detalles]]></text>
 			</staticText>
 		</band>

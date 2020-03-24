@@ -72,12 +72,12 @@ public class InicioSesion {
                 MenuController.tipoUsuario=rs.getString("tipoUsuario");
                 VentasController.nombreCajero=rs.getString("nombre") + " " + rs.getString("apellidoPaterno")+ " "+ rs.getString("apellidoMaterno");
                 VentasController.idCajero=rs.getInt("id");
-//                Alert dialogoAlerta = new Alert(Alert.AlertType.INFORMATION);
-//                dialogoAlerta.setTitle("Inicio de sesion");
-//                dialogoAlerta.setHeaderText("Correcto");
-//                dialogoAlerta.setContentText("Ha iniciado sesión con éxito");
-//                dialogoAlerta.initStyle(StageStyle.UTILITY);
-//                dialogoAlerta.showAndWait();
+                Alert dialogoAlerta = new Alert(Alert.AlertType.INFORMATION);
+                dialogoAlerta.setTitle("Inicio de sesion");
+                dialogoAlerta.setHeaderText("Correcto");
+                dialogoAlerta.setContentText("Ha iniciado sesión con éxito");
+                dialogoAlerta.initStyle(StageStyle.UTILITY);
+                dialogoAlerta.showAndWait();
                 return true;
                 
                     
