@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.ListaProductosController">
+   <children>
+      <SplitPane dividerPositions="0.909556313993174" layoutX="6.0" prefHeight="600.0" prefWidth="944.0">
+        <items>
+          <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="685.0">
+               <children>
+                  <TableView fx:id="tablaProducto" layoutX="-6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="694.0">
+                    <columns>
+                      <TableColumn fx:id="nombreCol" prefWidth="120.0" text="Nombre" />
+                      <TableColumn fx:id="descripcionCol" prefWidth="122.0" text="Descripcion" />
+                        <TableColumn fx:id="precioCol" prefWidth="99.0" text="Precio" />
+                        <TableColumn fx:id="cantidadCol" prefWidth="76.0" text="Cantidad" />
+                        <TableColumn fx:id="folioCol" text="Folio" />
+                        <TableColumn fx:id="tipoCol" prefWidth="95.0" text="Tipo" />
+                        <TableColumn fx:id="proveedorCol" prefWidth="114.0" text="Proveedor" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" onMouseClicked="#limpiarSeleccion" prefHeight="598.0" prefWidth="244.0">
+               <children>
+                  <Label layoutX="39.0" layoutY="188.0" text="Nombre:" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="37.0" layoutY="250.0" text="Descripcion:" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="37.0" layoutY="316.0" text="Precio:" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="42.0" layoutY="451.0" text="Folio:" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="nombreTF" layoutX="37.0" layoutY="208.0" prefHeight="25.0" prefWidth="171.0" stylesheets="@../Resources/textfield_1.css" />
+                  <TextField fx:id="descripcionTF" layoutX="37.0" layoutY="271.0" prefHeight="25.0" prefWidth="171.0" stylesheets="@../Resources/textfield_1.css" />
+                  <TextField fx:id="precioTF" layoutX="37.0" layoutY="335.0" prefHeight="25.0" prefWidth="171.0" stylesheets="@../Resources/textfield_1.css" />
+                  <TextField fx:id="folioTF" layoutX="37.0" layoutY="470.0" prefHeight="25.0" prefWidth="171.0" stylesheets="@../Resources/textfield_1.css" />
+                  <Button fx:id="anadirBT" layoutX="5.0" layoutY="561.0" mnemonicParsing="false" onAction="#anadir" stylesheets="@../Resources/btn_Aceppt.css" text="Nuevo" />
+                  <Button fx:id="eliminarBT" layoutX="166.0" layoutY="561.0" mnemonicParsing="false" onAction="#eliminar" stylesheets="@../Resources/btn_delete.css" text="Eliminar" />
+                  <Button fx:id="modificarBT" layoutX="76.0" layoutY="561.0" mnemonicParsing="false" onAction="#modificar" stylesheets="@../Resources/btn_delete.css" text="Modificar" />
+                  <ComboBox fx:id="filtrado" layoutX="91.0" layoutY="44.0" onAction="#getFilter" prefWidth="150.0" promptText="Selecciona" />
+                  <Label layoutX="20.0" layoutY="46.0" text="Filtrado:" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="indiceBusqueda" layoutX="37.0" layoutY="96.0" onKeyReleased="#buscarProducto" prefHeight="25.0" prefWidth="171.0" stylesheets="@../Resources/textfield_1.css" />
+                  <Button fx:id="actualiza" layoutX="80.0" layoutY="145.0" mnemonicParsing="false" onAction="#inicializarTablaProductos" stylesheets="@../Resources/btn_Aceppt.css" text="Actualizar" />
+                  <Label layoutX="42.0" layoutY="384.0" text="Cantidad:" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="cantidadTF" layoutX="37.0" layoutY="403.0" prefHeight="25.0" prefWidth="171.0" stylesheets="@../Resources/textfield_1.css" />
+                  <Button fx:id="menuBT" layoutX="1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#volverAlMenu" prefHeight="31.0" prefWidth="244.0" style="-fx-background-color: #3978FF;" stylesheets="@../Resources/btn_Aceppt.css" text="Volver al menú" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

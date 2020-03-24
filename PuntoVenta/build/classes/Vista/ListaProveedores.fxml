@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.ListaProveedoresController">
+   <children>
+      <SplitPane dividerPositions="0.8797595190380761" layoutX="-1.0" prefHeight="600.0" prefWidth="1000.0">
+        <items>
+          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="713.0">
+               <children>
+                  <TableView fx:id="tablaProveedor" prefHeight="598.0" prefWidth="728.0">
+                     <columns>
+                        <TableColumn fx:id="nombreCol" prefWidth="120.0" text="Nombre" />
+                        <TableColumn fx:id="apellidoPaternoCol" prefWidth="122.0" text="Apellido Paterno" />
+                        <TableColumn fx:id="apellidoMaternoCol" prefWidth="107.0" text="Apellido Materno" />
+                        <TableColumn fx:id="telefonoCol" prefWidth="77.0" text="Teléfono" />
+                        <TableColumn fx:id="direccionCol" prefWidth="92.0" text="Dirección" />
+                        <TableColumn fx:id="correoCol" prefWidth="101.0" text="Correo" />
+                        <TableColumn fx:id="empresaCol" prefWidth="105.0" text="Empresa" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" onMouseClicked="#limpiarSeleccion" prefHeight="598.0" prefWidth="281.0">
+               <children>
+                  <Label layoutX="22.0" layoutY="279.0" text="Apellido Materno:" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="22.0" layoutY="168.0" text="Nombre:" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="22.0" layoutY="224.0" text="Apellido Paterno:" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="22.0" layoutY="334.0" text="Teléfono:" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="nombreTF" layoutX="20.0" layoutY="183.0" prefWidth="239.0" stylesheets="@../Resources/textfield_1.css" />
+                  <TextField fx:id="apellidoPTF" layoutX="21.0" layoutY="239.0" prefWidth="239.0" stylesheets="@../Resources/textfield_1.css" />
+                  <TextField fx:id="apellidoMTF" layoutX="21.0" layoutY="296.0" prefWidth="239.0" stylesheets="@../Resources/textfield_1.css" />
+                  <TextField fx:id="telefonoTF" layoutX="21.0" layoutY="351.0" prefWidth="239.0" stylesheets="@../Resources/textfield_1.css" />
+                  <TextField fx:id="direccionTF" layoutX="21.0" layoutY="406.0" prefWidth="239.0" stylesheets="@../Resources/textfield_1.css" />
+                  <TextField fx:id="correoTF" layoutX="21.0" layoutY="460.0" prefWidth="239.0" stylesheets="@../Resources/textfield_1.css" />
+                  <TextField fx:id="empresaTF" layoutX="21.0" layoutY="515.0" prefWidth="239.0" stylesheets="@../Resources/textfield_1.css" />
+                  <Button fx:id="anadirBT" layoutX="24.0" layoutY="564.0" mnemonicParsing="false" onAction="#anadir" stylesheets="@../Resources/btn_Aceppt.css" text="Nuevo" />
+                  <Button fx:id="eliminarBT" layoutX="188.0" layoutY="564.0" mnemonicParsing="false" onAction="#eliminar" stylesheets="@../Resources/btn_delete.css" text="Eliminar" />
+                  <Button fx:id="modificarBT" layoutX="97.0" layoutY="564.0" mnemonicParsing="false" onAction="#modificar" stylesheets="@../Resources/btn_delete.css" text="Modificar" />
+                  <ComboBox fx:id="filtrado" layoutX="113.0" layoutY="57.0" onAction="#getFilter" prefWidth="150.0" promptText="Selecciona" />
+                  <Label layoutX="19.0" layoutY="61.0" text="Filtrado:" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="actualiza" layoutX="105.0" layoutY="130.0" mnemonicParsing="false" onAction="#inicializarTablaProveedor" stylesheets="@../Resources/btn_Aceppt.css" text="Actualizar" />
+                  <TextField fx:id="indiceBusqueda" layoutX="23.0" layoutY="89.0" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#buscarProveedor" prefWidth="239.0" stylesheets="@../Resources/textfield_1.css" />
+                  <Label layoutX="22.0" layoutY="389.0" text="Dirección:" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="22.0" layoutY="443.0" text="Correo:" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="22.0" layoutY="498.0" text="Empresa:" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="menuBT" layoutX="1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#volverAlMenu" prefHeight="31.0" prefWidth="279.0" style="-fx-background-color: #3978FF;" stylesheets="@../Resources/btn_Aceppt.css" text="Volver al menú" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

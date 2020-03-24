@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="650.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.MenuController">
+   <children>
+      <ImageView fitHeight="196.0" fitWidth="283.0" layoutX="240.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/logo2.png" />
+         </image>
+      </ImageView>
+      <Pane focusTraversable="true" layoutY="-3.0" prefHeight="570.0" prefWidth="146.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <ImageView fx:id="btnProductos" fitHeight="55.0" fitWidth="90.0" layoutX="46.0" layoutY="116.0" onMouseClicked="#abrirInventario" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/gift.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btnUsuarios" fitHeight="55.0" fitWidth="90.0" layoutX="46.0" layoutY="471.0" onMouseClicked="#abrirUsuarios" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/group.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btnProveedores" fitHeight="55.0" fitWidth="90.0" layoutX="46.0" layoutY="237.0" onMouseClicked="#abrirProveedores" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/supply.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btnVentas" fitHeight="55.0" fitWidth="90.0" layoutX="46.0" layoutY="20.0" onMouseClicked="#abrirVentas" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/commission.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btnReportes" fitHeight="55.0" fitWidth="90.0" layoutX="46.0" layoutY="363.0" onMouseClicked="#abrirReportes" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/analysis.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="txtVentas" layoutX="56.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ventas">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtProductos" layoutX="51.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Productos">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtProveedores" layoutX="40.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Proveedores">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtReportes" layoutX="47.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reportes">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtUsuarios" layoutX="44.0" layoutY="541.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuarios">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Text layoutX="302.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PaperLand">
+         <font>
+            <Font name="Segoe UI Bold" size="24.0" />
+         </font>
+      </Text>
+      <Line endX="-92.0" endY="562.0" layoutX="238.0" layoutY="5.0" startX="-92.0" startY="-7.999992370605469" stroke="#868585" />
+   </children>
+</AnchorPane>

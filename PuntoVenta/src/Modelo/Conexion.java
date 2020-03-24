@@ -15,27 +15,30 @@ import javafx.stage.StageStyle;
  * @author Francisco
  */
 public class Conexion {
-
-  /*  Connection conectar = null;
-    public static final String URL = "jdbc:mysql://localhost:8081/papeleriadb";
+    Connection conectar=null;
+    public static final String URL = "jdbc:mysql://localhost:3306/papeleriadb";
     public static final String USERNAME = "root";
     public static final String PASSWORD = "";
-
-    public Connection conectate() {
-        System.out.println("CONECTADO");
+    
+     public Connection conectate(){ 
+    
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            conectar = (Connection) DriverManager.getConnection(URL, USERNAME, PASSWORD);
+           conectar= (Connection) DriverManager.getConnection(URL, USERNAME, PASSWORD);
+          
+
             
-        } catch (Exception e) {
-            System.out.println("ERROR");
-            Alert dialogoAlerta = new Alert(Alert.AlertType.ERROR);
-            dialogoAlerta.setTitle("");
-            dialogoAlerta.setHeaderText("Error con la BD");
-            dialogoAlerta.initStyle(StageStyle.UTILITY);
-            dialogoAlerta.showAndWait();
-        }
-        return conectar;
-    }*/
+          
+    
+}catch(Exception e){
+    System.err.println(e);
+     Alert dialogoAlerta = new Alert(Alert.AlertType.ERROR);
+    dialogoAlerta.setTitle("");
+    dialogoAlerta.setHeaderText("Error con la BD");
+    dialogoAlerta.initStyle(StageStyle.UTILITY);
+    dialogoAlerta.showAndWait();
+}
+        return conectar;  
+     }
 }

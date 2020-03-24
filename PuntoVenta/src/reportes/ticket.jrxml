@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="220" pageHeight="600" columnWidth="180" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7bbd0144-0761-487e-bd8b-acc1d00c7a9c">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="488"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="dataset1" uuid="b4c3976d-d042-423c-bc50-919e1152db74">
+		<field name="_THIS" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="dataset2" uuid="69ef1b87-06f3-41c5-94c5-a16d3bb7ac96">
+		<field name="_THIS" class="java.lang.Integer"/>
+	</subDataset>
+	<subDataset name="dataset3" uuid="b120fee1-aa6d-4758-8925-5173531d1cdf">
+		<field name="_THIS" class="java.lang.Float"/>
+	</subDataset>
+	<parameter name="fecha" class="java.lang.String"/>
+	<parameter name="total" class="java.lang.Float"/>
+	<parameter name="productos" class="java.util.List"/>
+	<parameter name="cantidades" class="java.util.List"/>
+	<parameter name="precios" class="java.util.List"/>
+	<parameter name="nombreCajero" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="37" y="3" width="120" height="20" uuid="66d0b53d-f115-4d5a-83d8-21f86d51f183"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paper Land]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="23" width="170" height="20" uuid="1b855cd9-ba5a-42a9-8e3b-5bc7ef612173"/>
+				<text><![CDATA[--------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="44" width="157" height="20" uuid="2853c90e-681d-4a9b-825f-1c81e940c79a"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[Tuxtla Gutierrez,Chiapas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="54" height="20" uuid="ad083128-7bf0-4873-ae63-788c2531d6e9"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lo atendió:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="55" y="0" width="100" height="20" uuid="5b6cfd8a-f9a5-408e-92e2-f04779521260"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombreCajero}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="54" height="15" uuid="3780a292-5755-4ed4-a988-aafb61c7c3f3"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Impreso:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="55" y="20" width="92" height="15" uuid="5af42a59-2938-4318-a32a-2a689c35a3f0"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="133" splitType="Stretch">
+			<componentElement>
+				<reportElement x="4" y="14" width="56" height="16" uuid="02f894c9-6cf2-442f-b213-a78a921558dc"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset1" uuid="4a3cab30-00df-479c-9e4c-30f7f530ddb5">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{productos})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="16" width="56">
+						<textField>
+							<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="56" height="16" uuid="b3aae611-a951-448d-bacb-39ddfbbd9a35"/>
+							<textElement>
+								<font fontName="SansSerif" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{_THIS}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement x="5" y="2" width="32" height="9" uuid="ff1de6b4-00f8-428e-b389-a2d057186cb8"/>
+				<textElement>
+					<font fontName="SansSerif" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="77" y="2" width="41" height="9" uuid="a2945253-d7c7-4ba8-8f96-1becd80c0068"/>
+				<textElement>
+					<font fontName="SansSerif" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="64" y="14" width="54" height="16" uuid="883bc0f5-8a3b-479a-88fa-bf0252748038"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset2" uuid="dccc9517-6e6f-4051-9480-3000a12d7e96">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{cantidades})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="16" width="54">
+						<textField>
+							<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="54" height="16" uuid="7dba2962-48e0-41aa-ac86-0156b2b2558a"/>
+							<textElement>
+								<font fontName="SansSerif" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{_THIS}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement x="135" y="2" width="31" height="9" uuid="9f17a64d-0950-46f1-acd4-0216be79fd85"/>
+				<textElement>
+					<font fontName="SansSerif" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="120" y="14" width="54" height="16" uuid="332699f0-0fbe-4bc7-9793-bd40e64e981a"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset3" uuid="769883d5-35d0-47c4-8a12-126fd281e5ef">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{precios})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="16" width="54">
+						<textField>
+							<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="2" width="54" height="14" uuid="2e6edc75-ed43-455c-bc53-eb0248709b65"/>
+							<textElement>
+								<font fontName="SansSerif" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{_THIS}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="37" y="-21" width="103" height="20" uuid="02507243-df97-4de6-bf17-4a6b05ac7b3a"/>
+				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="-21" width="35" height="20" uuid="b8f9fd87-a97c-471f-aa4c-36ecaaed4fd4"/>
+				<text><![CDATA[Total: $]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="-22" width="201" height="20" uuid="4576effc-2f26-440d-b537-aba483807f82"/>
+				<textElement>
+					<font fontName="Monospaced" size="9"/>
+				</textElement>
+				<text><![CDATA[*** I.V.A INCLUIDO EN EL PRECIO ***]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="47" y="0" width="100" height="20" uuid="366a8176-531a-4e61-bb21-8295825d4087"/>
+				<text><![CDATA[Gracias por su visita!]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="56" splitType="Stretch"/>
+	</summary>
+</jasperReport>
