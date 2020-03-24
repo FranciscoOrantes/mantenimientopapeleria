@@ -14,9 +14,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -30,82 +32,101 @@ import javafx.stage.Stage;
  * @author Francisco
  */
 public class MenuController implements Initializable {
-    @FXML private ImageView btnVentas;
-    @FXML private ImageView btnProductos;
-    @FXML private ImageView btnProveedores;
-    @FXML private ImageView btnReportes;
-    @FXML private ImageView btnUsuarios;
-    @FXML private Text txtVentas;
-    @FXML private Text txtProductos;
-    @FXML private Text txtProveedores;
-    @FXML private Text txtReportes;
-    @FXML private Text txtUsuarios;
-     static Stage opcionMenu;
+
+    @FXML
+    private ImageView btnVentas;
+    @FXML
+    private ImageView btnProductos;
+    @FXML
+    private ImageView btnProveedores;
+    @FXML
+    private ImageView btnReportes;
+    @FXML
+    private ImageView btnUsuarios;
+    @FXML
+    private Text txtVentas;
+    @FXML
+    private Text txtProductos;
+    @FXML
+    private Text txtProveedores;
+    @FXML
+    private Text txtReportes;
+    @FXML
+    private Text txtUsuarios;
+    static Stage opcionMenu;
     static FXMLLoader loaderMenu;
     public static String tipoUsuario;
     float total;
     Date fecha;
     String fechaString;
-     // Declaramos la tabla y las columnas
+    // Declaramos la tabla y las columnas
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         SimpleDateFormat objSDF = new SimpleDateFormat("dd-MMM-yyyy"); 
-        
+        SimpleDateFormat objSDF = new SimpleDateFormat("dd-MMM-yyyy");
+
         fecha = new Date();
-        fechaString=objSDF.format(fecha).toString();
-        if(tipoUsuario.equals("Cajero")){
-        btnReportes.setVisible(false);
-        btnUsuarios.setVisible(false);
-        txtReportes.setVisible(false);
-        txtUsuarios.setVisible(false);
+        fechaString = objSDF.format(fecha).toString();
+        if (tipoUsuario.equals("Cajero")) {
+            btnReportes.setVisible(false);
+            btnUsuarios.setVisible(false);
+            txtReportes.setVisible(false);
+            txtUsuarios.setVisible(false);
         }
     }
 
-public void abrirVentas() throws IOException{
-     loaderMenu = new FXMLLoader(getClass().getResource("/Vista/Ventas.fxml"));
-     Parent root1 = (Parent) loaderMenu.load();
-     opcionMenu = new Stage();
-     opcionMenu.setScene(new Scene(root1));
-     opcionMenu.setResizable(false);
-     opcionMenu.show();
-}
+    public void abrirVentas(Event event) throws IOException {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+        loaderMenu = new FXMLLoader(getClass().getResource("/Vista/Ventas.fxml"));
+        Parent root1 = (Parent) loaderMenu.load();
+        opcionMenu = new Stage();
+        opcionMenu.setScene(new Scene(root1));
+        opcionMenu.setResizable(false);
+        opcionMenu.show();
+    }
 
-public void abrirUsuarios() throws IOException{
+    public void abrirUsuarios() throws IOException {
         loaderMenu = new FXMLLoader(getClass().getResource("/Vista/RegistroUsuarios.fxml"));
-     Parent root1 = (Parent) loaderMenu.load();
-     opcionMenu = new Stage();
-     opcionMenu.setScene(new Scene(root1));
-     opcionMenu.setResizable(false);
-     opcionMenu.show();
-}
+        Parent root1 = (Parent) loaderMenu.load();
+        opcionMenu = new Stage();
+        opcionMenu.setScene(new Scene(root1));
+        opcionMenu.setResizable(false);
+        opcionMenu.show();
+    }
 
-public void abrirProveedores() throws IOException{
-    //DIRIGIRSE A LISTA PROVEEDORES
-    loaderMenu = new FXMLLoader(getClass().getResource("/Vista/ListaProveedores.fxml"));
-     Parent root1 = (Parent) loaderMenu.load();
-     opcionMenu = new Stage();
-     opcionMenu.setScene(new Scene(root1));
-     opcionMenu.setResizable(false);
-     opcionMenu.show();
-}
+    public void abrirProveedores(Event event) throws IOException {
+        //DIRIGIRSE A LISTA PROVEEDORES
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+        loaderMenu = new FXMLLoader(getClass().getResource("/Vista/ListaProveedores.fxml"));
+        Parent root1 = (Parent) loaderMenu.load();
+        opcionMenu = new Stage();
+        opcionMenu.setScene(new Scene(root1));
+        opcionMenu.setResizable(false);
+        opcionMenu.show();
+    }
 
-public void abrirInventario() throws IOException{
-    loaderMenu = new FXMLLoader(getClass().getResource("/Vista/ListaProductos.fxml"));
-     Parent root1 = (Parent) loaderMenu.load();
-     opcionMenu = new Stage();
-     opcionMenu.setScene(new Scene(root1));
-     opcionMenu.setResizable(false);
-     opcionMenu.show();
-}
+    public void abrirInventario() throws IOException {
+        loaderMenu = new FXMLLoader(getClass().getResource("/Vista/ListaProductos.fxml"));
+        Parent root1 = (Parent) loaderMenu.load();
+        opcionMenu = new Stage();
+        opcionMenu.setScene(new Scene(root1));
+        opcionMenu.setResizable(false);
+        opcionMenu.show();
+    }
 
-public void abrirReportes() throws SQLException{
-    System.err.println("FALTA REPORTES");
-    Producto producto = new Producto();
-    total = producto.sumaTotalDia(fechaString);
-    Reporte reporte = new Reporte();
-    reporte.generarCorteCaja(fechaString, total);
-}   
+    public void abrirReportes() throws SQLException {
+        System.err.println("FALTA REPORTES");
+        Producto producto = new Producto();
+        total = producto.sumaTotalDia(fechaString);
+        Reporte reporte = new Reporte();
+        reporte.generarCorteCaja(fechaString, total);
+    }
+
 }

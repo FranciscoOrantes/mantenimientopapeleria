@@ -66,7 +66,7 @@
 			<staticText>
 				<reportElement x="37" y="3" width="120" height="20" uuid="66d0b53d-f115-4d5a-83d8-21f86d51f183"/>
 				<textElement>
-					<font fontName="Monospaced" size="12" isBold="false"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Paper Land]]></text>
 			</staticText>
@@ -77,7 +77,7 @@
 			<staticText>
 				<reportElement x="15" y="44" width="157" height="20" uuid="2853c90e-681d-4a9b-825f-1c81e940c79a"/>
 				<textElement>
-					<font fontName="Monospaced"/>
+					<font fontName="SansSerif"/>
 				</textElement>
 				<text><![CDATA[Tuxtla Gutierrez,Chiapas]]></text>
 			</staticText>
@@ -88,28 +88,28 @@
 			<staticText>
 				<reportElement x="0" y="0" width="54" height="20" uuid="ad083128-7bf0-4873-ae63-788c2531d6e9"/>
 				<textElement>
-					<font fontName="Monospaced" size="8"/>
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Lo atendió:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="55" y="0" width="100" height="20" uuid="5b6cfd8a-f9a5-408e-92e2-f04779521260"/>
 				<textElement>
-					<font fontName="Monospaced" size="8"/>
+					<font fontName="SansSerif" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nombreCajero}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="20" width="54" height="15" uuid="3780a292-5755-4ed4-a988-aafb61c7c3f3"/>
 				<textElement>
-					<font fontName="Monospaced" size="8"/>
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Impreso:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="55" y="20" width="92" height="15" uuid="5af42a59-2938-4318-a32a-2a689c35a3f0"/>
 				<textElement>
-					<font fontName="Monospaced"/>
+					<font fontName="SansSerif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{fecha}]]></textFieldExpression>
 			</textField>
@@ -127,7 +127,7 @@
 						<textField>
 							<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="56" height="16" uuid="b3aae611-a951-448d-bacb-39ddfbbd9a35"/>
 							<textElement>
-								<font fontName="Monospaced" size="9"/>
+								<font fontName="SansSerif" size="9"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{_THIS}]]></textFieldExpression>
 						</textField>
@@ -137,14 +137,14 @@
 			<staticText>
 				<reportElement x="5" y="2" width="32" height="9" uuid="ff1de6b4-00f8-428e-b389-a2d057186cb8"/>
 				<textElement>
-					<font fontName="Monospaced" size="6"/>
+					<font fontName="SansSerif" size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Producto]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="77" y="2" width="41" height="9" uuid="a2945253-d7c7-4ba8-8f96-1becd80c0068"/>
 				<textElement>
-					<font fontName="Monospaced" size="6"/>
+					<font fontName="SansSerif" size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
@@ -158,7 +158,7 @@
 						<textField>
 							<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="54" height="16" uuid="7dba2962-48e0-41aa-ac86-0156b2b2558a"/>
 							<textElement>
-								<font fontName="Monospaced" size="9"/>
+								<font fontName="SansSerif" size="9"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{_THIS}]]></textFieldExpression>
 						</textField>
@@ -168,7 +168,7 @@
 			<staticText>
 				<reportElement x="135" y="2" width="31" height="9" uuid="9f17a64d-0950-46f1-acd4-0216be79fd85"/>
 				<textElement>
-					<font fontName="Monospaced" size="6"/>
+					<font fontName="SansSerif" size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Precio]]></text>
 			</staticText>
@@ -182,7 +182,7 @@
 						<textField>
 							<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="2" width="54" height="14" uuid="2e6edc75-ed43-455c-bc53-eb0248709b65"/>
 							<textElement>
-								<font fontName="Monospaced" size="9"/>
+								<font fontName="SansSerif" size="9"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{_THIS}]]></textFieldExpression>
 						</textField>

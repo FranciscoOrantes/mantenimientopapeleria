@@ -5,6 +5,8 @@
  */
 package Controlador;
 
+import static Controlador.MenuController.loaderMenu;
+import static Controlador.MenuController.opcionMenu;
 import java.net.URL;
 import java.util.List;
 import Modelo.Producto;
@@ -15,9 +17,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -27,79 +31,112 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author Santiago
  */
 public class ListaProductosController implements Initializable {
+
     // Declaramos los botones
-    @FXML private Button anadirBT;
-    @FXML private Button modificarBT;
-    @FXML private Button eliminarBT;
-     // Declaramos los textfileds
-    @FXML private TextField nombreTF;
-    @FXML private TextField descripcionTF;
-    @FXML private TextField precioTF;
-    @FXML private TextField cantidadTF;
-    @FXML private TextField folioTF;
-    @FXML private TextField tipoTF;
-    @FXML private TextField proveedorTF;
-    @FXML private TextField indiceBusqueda;
-     // Declaramos la tabla y las columnas
-    @FXML private TableView<Producto> tablaProducto;
-    @FXML private TableColumn nombreCol;
-    @FXML private TableColumn descripcionCol;
-    @FXML private TableColumn precioCol;
-    @FXML private TableColumn cantidadCol;
-    @FXML private TableColumn folioCol;
-    @FXML private TableColumn tipoCol;
-    @FXML private TableColumn proveedorCol;
-    @FXML private ComboBox filtrado;
+    @FXML
+    private Button anadirBT;
+    @FXML
+    private Button modificarBT;
+    @FXML
+    private Button eliminarBT;
+    @FXML
+    private Button menuBT;
+    // Declaramos los textfileds
+    @FXML
+    private TextField nombreTF;
+    @FXML
+    private TextField descripcionTF;
+    @FXML
+    private TextField precioTF;
+    @FXML
+    private TextField cantidadTF;
+    @FXML
+    private TextField folioTF;
+    @FXML
+    private TextField tipoTF;
+    @FXML
+    private TextField proveedorTF;
+    @FXML
+    private TextField indiceBusqueda;
+    // Declaramos la tabla y las columnas
+    @FXML
+    private TableView<Producto> tablaProducto;
+    @FXML
+    private TableColumn nombreCol;
+    @FXML
+    private TableColumn descripcionCol;
+    @FXML
+    private TableColumn precioCol;
+    @FXML
+    private TableColumn cantidadCol;
+    @FXML
+    private TableColumn folioCol;
+    @FXML
+    private TableColumn tipoCol;
+    @FXML
+    private TableColumn proveedorCol;
+    @FXML
+    private ComboBox filtrado;
     private ObservableList<Producto> productos;
     private int posicionProductoEnTabla;
-    private String opcionFiltro,nombre,precio,descripcion;
-    private int id,folio,cantidad;
+    private String opcionFiltro, nombre, precio, descripcion;
+    private int id, folio, cantidad;
     static Stage ventanaInicio;
     static FXMLLoader loaderInicioAdmin;
-    @FXML private void anadir(ActionEvent event) throws IOException{
-        
-       loaderInicioAdmin = new FXMLLoader(getClass().getResource("/Vista/RegistroProducto.fxml"));
-                    Parent root1 = (Parent) loaderInicioAdmin.load();
-                    ventanaInicio = new Stage();
-                    ventanaInicio.setScene(new Scene(root1));
-                    ventanaInicio.setResizable(false);
-                    ventanaInicio.show(); 
+
+    @FXML
+    private void anadir(ActionEvent event) throws IOException {
+
+        loaderInicioAdmin = new FXMLLoader(getClass().getResource("/Vista/RegistroProducto.fxml"));
+        Parent root1 = (Parent) loaderInicioAdmin.load();
+        ventanaInicio = new Stage();
+        ventanaInicio.setScene(new Scene(root1));
+        ventanaInicio.setResizable(false);
+        ventanaInicio.show();
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
-    @FXML private void eliminar(ActionEvent event) throws SQLException{
+
+    @FXML
+    private void eliminar(ActionEvent event) throws SQLException {
         Producto product = new Producto();
         product.deleteProduct(id);
         inicializarTablaProductos();
-        
+
     }
-    @FXML private void modificar(ActionEvent event) throws SQLException{
-            nombre = nombreTF.getText();
-            precio = precioTF.getText();
-            cantidad =Integer.valueOf(cantidadTF.getText());
-            descripcion = descripcionTF.getText();
-            folio = Integer.valueOf(folioTF.getText());
+
+    @FXML
+    private void modificar(ActionEvent event) throws SQLException {
+        nombre = nombreTF.getText();
+        precio = precioTF.getText();
+        cantidad = Integer.valueOf(cantidadTF.getText());
+        descripcion = descripcionTF.getText();
+        folio = Integer.valueOf(folioTF.getText());
         Producto product = new Producto();
-        
-        product.updateProduct(id,nombre,descripcion,precio,cantidad,folio);
+
+        product.updateProduct(id, nombre, descripcion, precio, cantidad, folio);
         nombreTF.clear();
-       descripcionTF.clear();
-       precioTF.clear();
-       cantidadTF.clear();
-       folioTF.clear();
+        descripcionTF.clear();
+        precioTF.clear();
+        cantidadTF.clear();
+        folioTF.clear();
         inicializarTablaProductos();
     }
-    private final ListChangeListener<Producto> selectorTablaProductos =
-            new ListChangeListener<Producto>() {
-                @Override
-                public void onChanged(ListChangeListener.Change<? extends Producto> c) {
-                    ponerProductoSeleccionada();
-                }
-            };
+    private final ListChangeListener<Producto> selectorTablaProductos
+            = new ListChangeListener<Producto>() {
+        @Override
+        public void onChanged(ListChangeListener.Change<? extends Producto> c) {
+            ponerProductoSeleccionada();
+        }
+    };
 
     public Producto getTablaProductosSeleccionada() {
         if (tablaProducto != null) {
@@ -111,9 +148,9 @@ public class ListaProductosController implements Initializable {
         }
         return null;
     }
-     public void ponerProductoSeleccionada() {
-        
-         
+
+    public void ponerProductoSeleccionada() {
+
         final Producto producto = getTablaProductosSeleccionada();
         posicionProductoEnTabla = productos.indexOf(producto);
 
@@ -125,8 +162,8 @@ public class ListaProductosController implements Initializable {
             precioTF.setText(String.valueOf(producto.getPrecio()));
             cantidadTF.setText(String.valueOf(producto.getCantidad()));
             folioTF.setText(String.valueOf(producto.getFolio()));
-            id=producto.getId();
-            
+            id = producto.getId();
+
             // Pongo los botones en su estado correspondiente
             modificarBT.setDisable(false);
             eliminarBT.setDisable(false);
@@ -136,15 +173,14 @@ public class ListaProductosController implements Initializable {
             precioTF.setEditable(true);
             folioTF.setEditable(true);
             cantidadTF.setEditable(true);
-            
 
         }
-    } 
-     
-      public void inicializarTablaProductos() {
-          productos = FXCollections.observableArrayList();
-          Producto.llenarInfoProductos(productos);
-          tablaProducto.setItems(productos);
+    }
+
+    public void inicializarTablaProductos() {
+        productos = FXCollections.observableArrayList();
+        Producto.llenarInfoProductos(productos);
+        tablaProducto.setItems(productos);
         nombreCol.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombre"));
         descripcionCol.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcion"));
         precioCol.setCellValueFactory(new PropertyValueFactory<Producto, Float>("precio"));
@@ -154,20 +190,20 @@ public class ListaProductosController implements Initializable {
         proveedorCol.setCellValueFactory(new PropertyValueFactory<Producto, String>("proveedor"));
 
         nombreTF.setEditable(false);
-       descripcionTF.setEditable(false);
-       precioTF.setEditable(false);
-       folioTF.setEditable(false);
-       cantidadTF.setEditable(false);
-        
+        descripcionTF.setEditable(false);
+        precioTF.setEditable(false);
+        folioTF.setEditable(false);
+        cantidadTF.setEditable(false);
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-       productos = FXCollections.observableArrayList();
-       this.inicializarTablaProductos();
-       modificarBT.setDisable(true);
-       eliminarBT.setDisable(true);
+
+        productos = FXCollections.observableArrayList();
+        this.inicializarTablaProductos();
+        modificarBT.setDisable(true);
+        eliminarBT.setDisable(true);
         final ObservableList<Producto> tablaProductoSel = tablaProducto.getSelectionModel().getSelectedItems();
         tablaProductoSel.addListener(selectorTablaProductos);
         filtrado.getItems().addAll(
@@ -176,36 +212,38 @@ public class ListaProductosController implements Initializable {
                 "Precio"
         );
     }
-    public void limpiarSeleccion(){
-    tablaProducto.getSelectionModel().clearSelection();
-    modificarBT.setDisable(true);
-       eliminarBT.setDisable(true);
-       anadirBT.setDisable(false);
-       nombreTF.setEditable(false);
-       descripcionTF.setEditable(false);
-       precioTF.setEditable(false);
-       cantidadTF.setEditable(false);
-       folioTF.setEditable(false);
-       nombreTF.clear();
-       descripcionTF.clear();
-       precioTF.clear();
-       folioTF.clear();
-       cantidadTF.clear();
-       
+
+    public void limpiarSeleccion() {
+        tablaProducto.getSelectionModel().clearSelection();
+        modificarBT.setDisable(true);
+        eliminarBT.setDisable(true);
+        anadirBT.setDisable(false);
+        nombreTF.setEditable(false);
+        descripcionTF.setEditable(false);
+        precioTF.setEditable(false);
+        cantidadTF.setEditable(false);
+        folioTF.setEditable(false);
+        nombreTF.clear();
+        descripcionTF.clear();
+        precioTF.clear();
+        folioTF.clear();
+        cantidadTF.clear();
+
     }
-    public void getFilter(){
+
+    public void getFilter() {
         try {
             opcionFiltro = filtrado.getValue().toString();
         } catch (Exception e) {
         }
-        
-        
+
     }
+
     public void buscarProducto() throws SQLException {
-        String valor= indiceBusqueda.getText();
-          productos = FXCollections.observableArrayList();
-          Producto.filtradoPrincipal(opcionFiltro,productos,valor);
-          tablaProducto.setItems(productos);
+        String valor = indiceBusqueda.getText();
+        productos = FXCollections.observableArrayList();
+        Producto.filtradoPrincipal(opcionFiltro, productos, valor);
+        tablaProducto.setItems(productos);
         nombreCol.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombre"));
         descripcionCol.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcion"));
         precioCol.setCellValueFactory(new PropertyValueFactory<Producto, String>("precio"));
@@ -215,11 +253,23 @@ public class ListaProductosController implements Initializable {
         proveedorCol.setCellValueFactory(new PropertyValueFactory<Producto, String>("proveedor"));
 
         nombreTF.setEditable(false);
-       descripcionTF.setEditable(false);
-       precioTF.setEditable(false);
-       folioTF.setEditable(false);
-       cantidadTF.setEditable(false);
-       filtrado.valueProperty().set(null);
-        
+        descripcionTF.setEditable(false);
+        precioTF.setEditable(false);
+        folioTF.setEditable(false);
+        cantidadTF.setEditable(false);
+        filtrado.valueProperty().set(null);
+
+    }
+
+    public void volverAlMenu(Event event) throws IOException {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+        loaderMenu = new FXMLLoader(getClass().getResource("/Vista/Menu.fxml"));
+        Parent root1 = (Parent) loaderMenu.load();
+        opcionMenu = new Stage();
+        opcionMenu.setScene(new Scene(root1));
+        opcionMenu.setResizable(false);
+        opcionMenu.show();
     }
 }

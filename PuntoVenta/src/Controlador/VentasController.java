@@ -5,8 +5,11 @@
  */
 package Controlador;
 
+import static Controlador.MenuController.loaderMenu;
+import static Controlador.MenuController.opcionMenu;
 import Modelo.Producto;
 import Modelo.Reporte;
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,8 +22,13 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -30,6 +38,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 
@@ -68,6 +77,8 @@ public class VentasController implements Initializable {
     private Button btnEliminar;
     @FXML
     private Button btnEndVenta;
+    @FXML
+    private Button btnMenu;
     @FXML
     private Label fechaVenta;
     @FXML
@@ -192,7 +203,7 @@ public class VentasController implements Initializable {
         }
     }
 
-    public void endVenta() {
+    public void endVenta(Event event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmar");
         alert.setHeaderText("");
@@ -214,9 +225,30 @@ public class VentasController implements Initializable {
             } catch (Exception e) {
                 System.err.println(e);
             }
+          Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+        loaderMenu = new FXMLLoader(getClass().getResource("/Vista/Menu.fxml"));
+        Parent root1 = (Parent) loaderMenu.load();
+        opcionMenu = new Stage();
+        opcionMenu.setScene(new Scene(root1));
+        opcionMenu.setResizable(false);
+        opcionMenu.show();  
         } else {
 
         }
+    }
+
+    public void volverAlMenu(Event event) throws IOException {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+        loaderMenu = new FXMLLoader(getClass().getResource("/Vista/Menu.fxml"));
+        Parent root1 = (Parent) loaderMenu.load();
+        opcionMenu = new Stage();
+        opcionMenu.setScene(new Scene(root1));
+        opcionMenu.setResizable(false);
+        opcionMenu.show();
     }
 
 }

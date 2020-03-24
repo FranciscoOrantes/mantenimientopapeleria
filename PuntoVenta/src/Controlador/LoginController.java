@@ -28,18 +28,18 @@ import javafx.stage.Stage;
  * @author Francisco
  */
 public class LoginController implements Initializable {
+
     @FXML
     TextField txtUsuario;
     @FXML
     PasswordField txtPassword;
     @FXML
     Button btnIniciar;
-   
-    private String usuario,password;
-     static Stage ventanaInicio;
+
+    private String usuario, password;
+    static Stage ventanaInicio;
     static FXMLLoader loaderInicioAdmin;
-    
-    
+
     /**
      * Initializes the controller class.
      */
@@ -47,27 +47,27 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
     @FXML
-private void iniciarSesion(ActionEvent event) throws SQLException, IOException{
-usuario = txtUsuario.getText();
-password = txtPassword.getText();
-InicioSesion inicio = new InicioSesion();
-inicio.setUsuario(usuario);
-inicio.setPassword(password);
-if(inicio.buscarUsuario()){
-loaderInicioAdmin = new FXMLLoader(getClass().getResource("/Vista/Menu.fxml"));
-                    Parent root1 = (Parent) loaderInicioAdmin.load();
-                    ventanaInicio = new Stage();
-                    ventanaInicio.setScene(new Scene(root1));
-                    ventanaInicio.setResizable(false);
-                    ventanaInicio.show();
-Node source = (Node) event.getSource();
-Stage stage = (Stage) source.getScene().getWindow();
-stage.close();                    
+    private void iniciarSesion(ActionEvent event) throws SQLException, IOException {
+        usuario = txtUsuario.getText();
+        password = txtPassword.getText();
+        InicioSesion inicio = new InicioSesion();
+        inicio.setUsuario(usuario);
+        inicio.setPassword(password);
+        if (inicio.buscarUsuario()) {
+            loaderInicioAdmin = new FXMLLoader(getClass().getResource("/Vista/Menu.fxml"));
+            Parent root1 = (Parent) loaderInicioAdmin.load();
+            ventanaInicio = new Stage();
+            ventanaInicio.setScene(new Scene(root1));
+            ventanaInicio.setResizable(false);
+            ventanaInicio.show();
+            Node source = (Node) event.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.close();
 
-};
+        };
 
-
-}
+    }
 
 }

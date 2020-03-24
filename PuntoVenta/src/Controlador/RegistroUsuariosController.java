@@ -23,6 +23,7 @@ import javafx.stage.StageStyle;
  * @author flutter
  */
 public class RegistroUsuariosController implements Initializable {
+
     private String username;
     private String nombre;
     private String apellidoP;
@@ -30,7 +31,7 @@ public class RegistroUsuariosController implements Initializable {
     private String contrasena;
     private String tipoUsuario;
     @FXML
-    TextField user,name,ap,am,pass;
+    TextField user, name, ap, am, pass;
     @FXML
     ComboBox comboTipos;
     @FXML
@@ -44,49 +45,44 @@ public class RegistroUsuariosController implements Initializable {
                 "Cajero"
         );
         // TODO
-    } 
- public void seleccionarTipo(){
-     try {
-         tipoUsuario = comboTipos.getValue().toString();
-         btnRegistrar.setDisable(false);
-     } catch (Exception e) {
-     }
- 
- }   
- public void registrar() throws SQLException{
-   
-    if(name.getText().equals("")||ap.getText().equals("")||am.getText().equals("")||pass.getText().equals(""))
-    {
-    Alert dialogoAlerta = new Alert(Alert.AlertType.WARNING);
-    dialogoAlerta.setTitle("Advertencia");
-    dialogoAlerta.setHeaderText("Campos No validos!");
-    dialogoAlerta.initStyle(StageStyle.UTILITY);
-    dialogoAlerta.showAndWait();
-    }else{
-         username =user.getText();
-         nombre = name.getText();
-         apellidoP=ap.getText();
-         apellidoM = am.getText();
-         contrasena = pass.getText();
-         
-         Usuario a= new Usuario();
-         a.Guardar(username, contrasena, nombre, apellidoP, apellidoM, tipoUsuario);
-         user.setText("");
-         name.setText("");
-         ap.setText("");
-         am.setText("");
-         pass.setText("");
-         comboTipos.valueProperty().set(null);
-         btnRegistrar.setDisable(true);
-  
-         
-         
-         
     }
-    
-      
-    
-    
-}
-    
+
+    public void seleccionarTipo() {
+        try {
+            tipoUsuario = comboTipos.getValue().toString();
+            btnRegistrar.setDisable(false);
+        } catch (Exception e) {
+        }
+
+    }
+
+    public void registrar() throws SQLException {
+
+        if (name.getText().equals("") || ap.getText().equals("") || am.getText().equals("") || pass.getText().equals("")) {
+            Alert dialogoAlerta = new Alert(Alert.AlertType.WARNING);
+            dialogoAlerta.setTitle("Advertencia");
+            dialogoAlerta.setHeaderText("Campos No validos!");
+            dialogoAlerta.initStyle(StageStyle.UTILITY);
+            dialogoAlerta.showAndWait();
+        } else {
+            username = user.getText();
+            nombre = name.getText();
+            apellidoP = ap.getText();
+            apellidoM = am.getText();
+            contrasena = pass.getText();
+
+            Usuario a = new Usuario();
+            a.Guardar(username, contrasena, nombre, apellidoP, apellidoM, tipoUsuario);
+            user.setText("");
+            name.setText("");
+            ap.setText("");
+            am.setText("");
+            pass.setText("");
+            comboTipos.valueProperty().set(null);
+            btnRegistrar.setDisable(true);
+
+        }
+
+    }
+
 }

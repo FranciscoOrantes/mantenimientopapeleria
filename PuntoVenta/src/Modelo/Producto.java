@@ -358,11 +358,7 @@ public class Producto {
             
 
             if (res > 0) {
-                Alert dialogoAlerta = new Alert(Alert.AlertType.INFORMATION);
-                dialogoAlerta.setTitle("Exito");
-                dialogoAlerta.setHeaderText("Se han actualizado los Datos");
-                dialogoAlerta.initStyle(StageStyle.UTILITY);
-                dialogoAlerta.showAndWait();
+                
             }
 
         } catch (Exception e) {
